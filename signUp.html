@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="tipo_contenido" content="width=device-width, initial-scale=1" http-equiv="content-type" charset="utf-8">
+	<title>Formularioa</title>
+    <link rel='stylesheet' type='text/css' href='stylesPWS/styleform.css' />
+	<link rel='stylesheet' 
+		   type='text/css' 
+		   media='only screen and (min-width: 530px) and (min-device-width: 481px)'
+		   href='stylesPWS/wide.css' />
+	<link rel='stylesheet' 
+		   type='text/css' 
+		   media='only screen and (max-width: 480px)'
+		   href='stylesPWS/smartphone.css' />
+	<script type="text/javascript" language="JavaScript">
+		function ikusBalioak(){
+			var sAux="";
+			var frm=document.getElementById("erregistro");
+			for(i=1;i<frm.elements.length;i++){
+				sAux +="IZENA: " + frm.elements[i].name+" ";
+				sAux +="BALIOA: " + frm.elements[i].value+"\n";
+			}
+			alert(sAux);
+		}
+		 function irudiaIgo(irudia) {
+			var files = irudia.files;
+			for (var i = 0; i < files.length; i++) {           
+				var file = files[i];
+				var imageType = /image.*/;     
+				if (!file.type.match(imageType)) {
+					continue;
+				}           
+				var img=document.getElementById("img");            
+				img.file = file;    
+				var reader = new FileReader();
+				reader.onload = (function(aImg) { 
+					return function(e) { 
+						aImg.src = e.target.result; 
+					}; 
+				})(img);
+				reader.readAsDataURL(file);
+			}  
+		}
+    
+</script>
+  </head>
+  <body>
+    <h1>Formularioa:</h1>
+	<form id="erregistro" name="erregistro" onSubmit="ikusBalioak()" enctype="multipart/form-data">
+	Izen-abizenak*:
+	<input type="text" name="izena" placeholder="Josu Arruarte Freud" /><br/>
+	Eposta elektronikoa*:
+	<input type="text" title="EHU posta" name="eposta" placeholder="jarruarte007@ikasle.ehu.eus" /><br/>
+	Pasahitza*:
+	<input type="password" name="pasahitza" /><br/>
+	Telefono zenbakia*:
+	<input type="tel" name="telefonoa" placeholder="987654321" /><br/>
+	Espezialitatea*:
+	<select name="cars">
+		<option value="Konputazioa">Konputazioa</option>
+		<option value="Software Ingeniaritza">Software Ingeniaritza</option>
+		<option value="Konputagailuen Ingeniaritza">Konputagailuen Ingeniaritza</option>
+  </select><br/>
+  Interesak:
+  <br/>
+	<textarea rows="10" cols="40" name="interesak" placeholder="arrauna" ></textarea>
+  <br/>  
+	Igo ezazu irudia:<br/>
+	<input name="uploadedfile" type="file" accept="image/*" onchange="irudiaIgo(this)"/><br/>
+	<img id="img" src="" alt="irudia hemen" style="width:15%; margin-top:10px;"/><br/>
+    <input type="submit" value="Bidali" /><br/>
+	<span><a href='layout.html'><img src="http://www.pngall.com/wp-content/uploads/2016/04/Home-PNG-File.png" alt="atzera" width="50" height="50" align="left"></a></span>	
+	</body>
+</html>

@@ -1,0 +1,7 @@
+body				{background-image: url("http://www.fondoswiki.com/Uploads/fondoswiki.com/ImagenesGrandes/paisajes-nevados-1.jpg");}
+
+#page-wrap:after 	{content: "Smartphone Layout";}
+
+h2 span, section h3	{display: none;}
+body				{font-size: xx-large;}
+footer, input		{font-size: large;}
