@@ -71,7 +71,8 @@
 	title="EHU postako korreoa izan behar du." onchange="this.setCustomValidity(this.validity.patternMismatch ? this.title : '');"/><br/></div>
 	Pasahitza(*):
 	<div><input type="password" name="pasahitza" required pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])([A-Za-z\d$@$!%*?&]|[^ ]){6,}" 
-	title="Pasahitzak 6 karaktere behar ditu, adierazitako formatuarekin." onchange="this.setCustomValidity(this.validity.patternMismatch ? this.title : '');"/><br/></div>
+	title="Pasahitzak 6 karaktere behar ditu, adierazitako formatuarekin: gutxienez maiuskula bat, minuskula bat, digitu bat eta karaktere espezial bat behar ditu inongo espaziorik gabe." 
+	onchange="this.setCustomValidity(this.validity.patternMismatch ? this.title : '');"/><br/></div>
 	Telefono zenbakia(*):
 	<div><input type="tel" name="telefonoa" required pattern="[0-9]{9}" placeholder="987654321" 
 	title="9 digituko telefono bat sartu." onchange="this.setCustomValidity(this.validity.patternMismatch ? this.title : '');"/><br/></div>
