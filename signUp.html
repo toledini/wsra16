@@ -136,21 +136,13 @@
 			}  
 		}
 		
-	function DropDownChanged(oDDL) {
-		var oTextbox = oDDL.form.elements["besterik"];
-		if (oTextbox) {
-			oTextbox.style.display = (oDDL.value == "") ? "" : "none";
-			if (oDDL.value == "")
-				oTextbox.focus();
+	function besteEsp(){
+		if (document.getElementById("esp").value=="besterik"){
+			document.getElementById("beste").style.display="inline";
 		}
-	}
-
-	function FormSubmit(oForm) {
-		var oHidden = oForm.elements["special"];
-		var oDDL = oForm.elements["special_ddl"];
-		var oTextbox = oForm.elements["besterik"];
-		if (oHidden && oDDL && oTextbox)
-			oHidden.value = (oDDL.value == "") ? oTextbox.value : oDDL.value;
+		else{
+			document.getElementById("beste").style.display="none"; 
+		}
 	}
     
 </script>
@@ -171,15 +163,14 @@
 	Telefono zenbakia(*):
 	<div><input type="tel" name="telefonoa" placeholder="987654321" /><br/></div>
 	Espezialitatea(*):
-	<form onSubmit="FormSubmit(this);">
-	<input type="hidden" name="special" />
-	<div><select name="special_ddl" onchange="DropDownChanged(this);">
+	<div><select name="espezialitatea" id="esp" onchange="besteEsp();">
 		<option value="1">Konputazioa</option>
 		<option value="2">Software Ingeniaritza</option>
 		<option value="3">Konputagailuen Ingeniaritza</option>
-		<option value="">Besterik</option>
+		<option value="besterik">Besterik</option>
   </select><br/></div> 
-  <input type="text" name="besterik" placeholder="espezialitatea" style="display: none; " /><br/>
+   <textarea rows="1" cols="20" name="beste" id="beste" value=""  placeholder="espezialitatea" style="display: none;" ></textarea>
+  <br/>
   Interesak:
   <div><br/>
 	<textarea rows="10" cols="40" name="interesak" placeholder="arrauna" ></textarea>
