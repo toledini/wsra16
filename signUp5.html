@@ -67,7 +67,7 @@
 	<div><input type="text" name="abizena2" required pattern="([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*)+" placeholder="Freud" 
 	title="Sartu baliozko abizena maiuskula batekin hasita." onchange="this.setCustomValidity(this.validity.patternMismatch ? this.title : '');"/><br/></div>
 	Eposta elektronikoa(*):
-	<div><input type="email" title="EHU posta" name="eposta" required pattern="[a-z]+[0-9]{3}@ikasle\.ehu\.(es|eus)" placeholder="jarruarte007@ikasle.ehu.eus" 
+	<div><input type="email" name="eposta" required pattern="[a-z]+[0-9]{3}@ikasle\.ehu\.(es|eus)" placeholder="jarruarte007@ikasle.ehu.eus" 
 	title="EHU postako korreoa izan behar du." onchange="this.setCustomValidity(this.validity.patternMismatch ? this.title : '');"/><br/></div>
 	Pasahitza(*):
 	<div><input type="password" name="pasahitza" required pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])([A-Za-z\d$@$!%*?&]|[^ ]){6,}" 
