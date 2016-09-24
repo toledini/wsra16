@@ -13,100 +13,7 @@
 		   media='only screen and (max-width: 480px)'
 		   href='stylesPWS/smartphone.css' />
 	<script type="text/javascript" language="JavaScript">
-		
-		function balidatu(){
-			var errorea="";
-			var betetzear ="";
-			var frm=document.getElementById("erregistro");
-			for(i=0;i<frm.elements.length;i++){
-				if(frm.elements[i].name == "eposta" || frm.elements[i].name == "izena" || frm.elements[i].name == "abizena1" || frm.elements[i].name == "abizena2" || frm.elements[i].name == "pasahitza" || frm.elements[i].name == "telefonoa"){
-					if(frm.elements[i].value.trim()==""){
-						errorea +=" | "+ frm.elements[i].name;
-					}else{
-						if(frm.elements[i].name == "izena"){
-							if(!checkName(frm.elements[i].value.trim())){
-								betetzear += "Izena ez da zuzena.\n";
-							}
-						}
-						if(frm.elements[i].name == "abizena1"){
-							if(!checkSurname(frm.elements[i].value.trim())){
-								betetzear += "Lehen abizena ez da zuzena.\n";
-							}
-						}	
-						if(frm.elements[i].name == "abizena2"){
-							if(!checkSurname(frm.elements[i].value.trim())){
-								betetzear += "Bigarren abizena ez da zuzena.\n";
-							}
-						}						
-						if(frm.elements[i].name == "pasahitza"){
-							if(!checkPass(frm.elements[i].value.trim())){
-								betetzear += "pasahitzak 6 karaktere baina gutxiago ditu\n" ;
-								betetzear += "Gogoratu pasahitzak ondoko ezaugarriak bete behar dituela\n" ;
-								betetzear += "- Gutxienez hizki maiuskula eta minuskula bat\n" ;
-								betetzear += "- Gutxienez digitu bat eta karaktere espezial bat\n" ;
-								betetzear += "- Ez du espazio txuririk izan behar\n" ;
-							}
-						}
-						if(frm.elements[i].name == "eposta"){
-							if(!checkEmail(frm.elements[i].value.trim())){
-								betetzear += frm.elements[i].name + " okerra (ad. jiparsar003@ikasle.ehu.eus).\n" ;
-							}
-						}
-						if(frm.elements[i].name == "telefonoa"){
-							if(!checkTlfn(frm.elements[i].value.trim())){
-								betetzear += frm.elements[i].name + "-k 9 digitukoa izan behar du.\n" ;
-							}
-						}
-					}
-				}
-			}
-			if(errorea!= "" || betetzear != ""){
-				alert("Bete beharreko gakoak:\n\n   "  +errorea + " |\n\n Gaizki dauden elementuak:\n\n   "+betetzear+"\n");
-			}else{
-                ikusBalioak();
-			}
-		}
-
-		function checkName(balioa){
-			expresioa = RegExp(/^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*){1,2}$/);
-			if(expresioa.test(balioa)){
-				return true;
-			}
-			return false;
-		}
-		
-		function checkSurname(balioa){
-			expresioa = RegExp(/^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*)+$/);
-			if(expresioa.test(balioa)){
-				return true;
-			}
-			return false;
-		}
-		
-		function checkPass(balioa){
-			expresioa = RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])([A-Za-z\d$@$!%*?&]|[^ ]){6,}$/);
-			if(expresioa.test(balioa)){
-				return true;
-			}
-			return false;
-		}
-
-		function checkEmail(balioa){
-			expresioa = RegExp(/^[a-z]+[0-9]{3}@ikasle\.ehu\.(es|eus)$/);
-			if(expresioa.test(balioa)){
-				return true;
-			}
-			return false;
-		}
-
-		function checkTlfn(balioa){
-			expresioa = RegExp(/^[0-9]{9}$/);
-			if(expresioa.test(balioa)){
-				return true;
-			}
-			return false;
-		}
-		
+			
 		function ikusBalioak(){
 			var sAux="";
 			var frm=document.getElementById("erregistro");
@@ -149,21 +56,27 @@
   </head>
   <body>
     <h1>Formularioa:</h1>
-	<form id="erregistro" name="erregistro" onSubmit="balidatu()" enctype="multipart/form-data">
+	<form id="erregistro" name="erregistro" onSubmit="ikusBalioak()" enctype="multipart/form-data">
 	Izena(*):
-	<div><input type="text" name="izena" placeholder="Josu" /><br/></div>
+	<div><input type="text" name="izena" required pattern="([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*){1,2}" placeholder="Josu"
+	title="Sartu baliozko izena maiuskula batekin hasita." onchange="this.setCustomValidity(this.validity.patternMismatch ? this.title : '');"/><br/></div>
 	1.abizena(*):
-	<div><input type="text" name="abizena1" placeholder="Arruarte" /><br/></div>
+	<div><input type="text" name="abizena1" required pattern="([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*)+" placeholder="Arruarte" 
+	title="Sartu baliozko abizena maiuskula batekin hasita." onchange="this.setCustomValidity(this.validity.patternMismatch ? this.title : '');"/><br/></div>
 	2.abizena(*):
-	<div><input type="text" name="abizena2" placeholder="Freud" /><br/></div>
+	<div><input type="text" name="abizena2" required pattern="([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*)+" placeholder="Freud" 
+	title="Sartu baliozko abizena maiuskula batekin hasita." onchange="this.setCustomValidity(this.validity.patternMismatch ? this.title : '');"/><br/></div>
 	Eposta elektronikoa(*):
-	<div><input type="email" title="EHU posta" name="eposta" placeholder="jarruarte007@ikasle.ehu.eus" /><br/></div>
+	<div><input type="email" title="EHU posta" name="eposta" required pattern="[a-z]+[0-9]{3}@ikasle\.ehu\.(es|eus)" placeholder="jarruarte007@ikasle.ehu.eus" 
+	title="EHU postako korreoa izan behar du." onchange="this.setCustomValidity(this.validity.patternMismatch ? this.title : '');"/><br/></div>
 	Pasahitza(*):
-	<div><input type="password" name="pasahitza" /><br/></div>
+	<div><input type="password" name="pasahitza" required pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])([A-Za-z\d$@$!%*?&]|[^ ]){6,}" 
+	title="Pasahitzak 6 karaktere behar ditu, adierazitako formatuarekin." onchange="this.setCustomValidity(this.validity.patternMismatch ? this.title : '');"/><br/></div>
 	Telefono zenbakia(*):
-	<div><input type="tel" name="telefonoa" placeholder="987654321" /><br/></div>
+	<div><input type="tel" name="telefonoa" required pattern="[0-9]{9}" placeholder="987654321" 
+	title="9 digituko telefono bat sartu." onchange="this.setCustomValidity(this.validity.patternMismatch ? this.title : '');"/><br/></div>
 	Espezialitatea(*):
-	<div><select name="espezialitatea" id="esp" onchange="besteEsp();">
+	<div><select name="espezialitatea" required id="esp" onchange="besteEsp();">
 		<option value="1">Konputazioa</option>
 		<option value="2">Software Ingeniaritza</option>
 		<option value="3">Konputagailuen Ingeniaritza</option>

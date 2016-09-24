@@ -13,58 +13,10 @@
 		   media='only screen and (max-width: 480px)'
 		   href='stylesPWS/smartphone.css' />
 	<script type="text/javascript" language="JavaScript">
-				function balidatu(){
-			var errorea="";
-			var betetzear ="";
-			var frm=document.getElementById("sartu");
-			for(i=0;i<frm.elements.length;i++){
-				if(frm.elements[i].name == "eposta" || frm.elements[i].name == "pasahitza"){
-					if(frm.elements[i].value.trim()==""){
-						errorea +=" | "+ frm.elements[i].name;
-					}else{
-						if(frm.elements[i].name == "eposta"){
-							if(!checkEmail(frm.elements[i].value.trim())){
-								betetzear += frm.elements[i].name + " okerra (ad. jiparsar003@ikasle.ehu.eus).\n" ;
-							}
-						}
-						if(frm.elements[i].name == "pasahitza"){
-							if(!checkPass(frm.elements[i].value.trim())){
-								betetzear += "pasahitzak 6 karaktere baina gutxiago ditu\n" ;
-								betetzear += "Gogoratu pasahitzak ondoko ezaugarriak bete behar dituela\n" ;
-								betetzear += "- Gutxienez hizki maiuskula eta minuskula bat\n" ;
-								betetzear += "- Gutxienez digitu bat eta karaktere espezial bat\n" ;
-								betetzear += "- Ez du espazio txuririk izan behar\n" ;
-							}
-						}
-					}
-				}
-			}
-			if(errorea!= "" || betetzear != ""){
-				alert("Bete beharreko gakoak:\n\n   "  +errorea + " |\n\n Gaizki dauden elementuak:\n\n   "+betetzear+"\n");
-			}else{
-                ikusBalioak();
-			}
-		}
-		
-		function checkPass(balioa){
-			expresioa = RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])([A-Za-z\d$@$!%*?&]|[^ ]){6,}$/);
-			if(expresioa.test(balioa)){
-				return true;
-			}
-			return false;
-		}
-
-		function checkEmail(balioa){
-			expresioa = RegExp(/^[a-z]+[0-9]{3}@ikasle\.ehu\.(es|eus)$/);
-			if(expresioa.test(balioa)){
-				return true;
-			}
-			return false;
-		}
 		
 		function ikusBalioak(){
 			var sAux="";
-			var frm=document.getElementById("erregistro");
+			var frm=document.getElementById("sartu");
 			for(i=0;i<frm.elements.length;i++){
 				sAux +="IZENA: " + frm.elements[i].name+" ";
 				sAux +="BALIOA: " + frm.elements[i].value+"\n";
@@ -80,9 +32,11 @@
       <img src="http://lh5.ggpht.com/-IF_6MPyj5j0/Tvw21H7gFBI/AAAAAAAAD_4/lP_NpWG7-vg/s9000/Ghostbusters2_logo.png" class="image" width="50" length="50">
       Hasi saioa:
     </h2>
-    <form id="sartu" name="sartu" onSubmit="balidatu()" enctype="multipart/form-data">
-      <div><input class="mainLoginInput" type="text" name="eposta" placeholder="&#61447; jarruarte007@ikasle.ehu.eus" /><br/></div>
-      <div><input class="mainLoginInput" type="password" name="pasahitza" placeholder="&#61475;"/><br/></div>
+    <form id="sartu" name="sartu" onSubmit="ikusBalioak()" enctype="multipart/form-data">
+      <div><input class="mainLoginInput" type="email" name="eposta" required pattern="[a-z]+[0-9]{3}@ikasle\.ehu\.(es|eus)" placeholder="&#61447; jarruarte007@ikasle.ehu.eus"
+	  title="EHU postako korreoa izan behar du." onchange="this.setCustomValidity(this.validity.patternMismatch ? this.title : '');" /><br/></div>
+      <div><input class="mainLoginInput" type="password" name="pasahitza" required pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])([A-Za-z\d$@$!%*?&]|[^ ]){6,}" placeholder="&#61475;"
+	  title="Pasahitzak 6 karaktere behar ditu, adierazitako formatuarekin." onchange="this.setCustomValidity(this.validity.patternMismatch ? this.title : '');"/><br/></div>
       <div><input type="submit" name="login" value="Login" /><br/></div>
 
     </form>
