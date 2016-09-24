@@ -13,6 +13,100 @@
 		   media='only screen and (max-width: 480px)'
 		   href='stylesPWS/smartphone.css' />
 	<script type="text/javascript" language="JavaScript">
+		
+		function balidatu(){
+			var errorea="";
+			var betetzear ="";
+			var frm=document.getElementById("erregistro");
+			for(i=0;i<frm.elements.length;i++){
+				if(frm.elements[i].name == "eposta" || frm.elements[i].name == "izena" || frm.elements[i].name == "abizena1" || frm.elements[i].name == "abizena2" || frm.elements[i].name == "pasahitza" || frm.elements[i].name == "telefonoa"){
+					if(frm.elements[i].value.trim()==""){
+						errorea +=" | "+ frm.elements[i].name;
+					}else{
+						if(frm.elements[i].name == "izena"){
+							if(!checkName(frm.elements[i].value.trim())){
+								betetzear += "Izena ez da zuzena.\n";
+							}
+						}
+						if(frm.elements[i].name == "abizena1"){
+							if(!checkSurname(frm.elements[i].value.trim())){
+								betetzear += "Lehen abizena ez da zuzena.\n";
+							}
+						}	
+						if(frm.elements[i].name == "abizena2"){
+							if(!checkSurname(frm.elements[i].value.trim())){
+								betetzear += "Bigarren abizena ez da zuzena.\n";
+							}
+						}						
+						if(frm.elements[i].name == "pasahitza"){
+							if(!checkPass(frm.elements[i].value.trim())){
+								betetzear += "pasahitzak 6 karaktere baina gutxiago ditu\n" ;
+								betetzear += "Gogoratu pasahitzak ondoko ezaugarriak bete behar dituela\n" ;
+								betetzear += "- Gutxienez hizki maiuskula eta minuskula bat\n" ;
+								betetzear += "- Gutxienez digitu bat eta karaktere espezial bat\n" ;
+								betetzear += "- Ez du espazio txuririk izan behar\n" ;
+							}
+						}
+						if(frm.elements[i].name == "eposta"){
+							if(!checkEmail(frm.elements[i].value.trim())){
+								betetzear += frm.elements[i].name + " okerra (ad. jiparsar003@ikasle.ehu.eus).\n" ;
+							}
+						}
+						if(frm.elements[i].name == "telefonoa"){
+							if(!checkTlfn(frm.elements[i].value.trim())){
+								betetzear += frm.elements[i].name + "-k 9 digitukoa izan behar du.\n" ;
+							}
+						}
+					}
+				}
+			}
+			if(errorea!= "" || betetzear != ""){
+				alert("Bete beharreko gakoak:\n\n   "  +errorea + " |\n\n Gaizki dauden elementuak:\n\n   "+betetzear+"\n");
+			}else{
+                ikusBalioak();
+			}
+		}
+
+		function checkName(balioa){
+			expresioa = RegExp(/^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*){1,2}$/);
+			if(expresioa.test(balioa)){
+				return true;
+			}
+			return false;
+		}
+		
+		function checkSurname(balioa){
+			expresioa = RegExp(/^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*)+$/);
+			if(expresioa.test(balioa)){
+				return true;
+			}
+			return false;
+		}
+		
+		function checkPass(balioa){
+			expresioa = RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])([A-Za-z\d$@$!%*?&]|[^ ]){6,}$/);
+			if(expresioa.test(balioa)){
+				return true;
+			}
+			return false;
+		}
+
+		function checkEmail(balioa){
+			expresioa = RegExp(/^[a-z]+[0-9]{3}@ikasle\.ehu\.(es|eus)$/);
+			if(expresioa.test(balioa)){
+				return true;
+			}
+			return false;
+		}
+
+		function checkTlfn(balioa){
+			expresioa = RegExp(/^[0-9]{9}$/);
+			if(expresioa.test(balioa)){
+				return true;
+			}
+			return false;
+		}
+		
 		function ikusBalioak(){
 			var sAux="";
 			var frm=document.getElementById("erregistro");
@@ -41,35 +135,59 @@
 				reader.readAsDataURL(file);
 			}  
 		}
+		
+	function DropDownChanged(oDDL) {
+		var oTextbox = oDDL.form.elements["besterik"];
+		if (oTextbox) {
+			oTextbox.style.display = (oDDL.value == "") ? "" : "none";
+			if (oDDL.value == "")
+				oTextbox.focus();
+		}
+	}
+
+	function FormSubmit(oForm) {
+		var oHidden = oForm.elements["special"];
+		var oDDL = oForm.elements["special_ddl"];
+		var oTextbox = oForm.elements["besterik"];
+		if (oHidden && oDDL && oTextbox)
+			oHidden.value = (oDDL.value == "") ? oTextbox.value : oDDL.value;
+	}
     
 </script>
   </head>
   <body>
     <h1>Formularioa:</h1>
-	<form id="erregistro" name="erregistro" onSubmit="ikusBalioak()" enctype="multipart/form-data">
-	Izen-abizenak*:
-	<input type="text" name="izena" placeholder="Josu Arruarte Freud" /><br/>
-	Eposta elektronikoa*:
-	<input type="text" title="EHU posta" name="eposta" placeholder="jarruarte007@ikasle.ehu.eus" /><br/>
-	Pasahitza*:
-	<input type="password" name="pasahitza" /><br/>
-	Telefono zenbakia*:
-	<input type="tel" name="telefonoa" placeholder="987654321" /><br/>
-	Espezialitatea*:
-	<select name="espezialitatea">
-		<option value="Konputazioa">Konputazioa</option>
-		<option value="Software Ingeniaritza">Software Ingeniaritza</option>
-		<option value="Konputagailuen Ingeniaritza">Konputagailuen Ingeniaritza</option>
-		<option value="Besterik">Besterik</option>
-  </select><br/>
+	<form id="erregistro" name="erregistro" onSubmit="balidatu()" enctype="multipart/form-data">
+	Izena(*):
+	<div><input type="text" name="izena" placeholder="Josu" /><br/></div>
+	1.abizena(*):
+	<div><input type="text" name="abizena1" placeholder="Arruarte" /><br/></div>
+	2.abizena(*):
+	<div><input type="text" name="abizena2" placeholder="Freud" /><br/></div>
+	Eposta elektronikoa(*):
+	<div><input type="text" title="EHU posta" name="eposta" placeholder="jarruarte007@ikasle.ehu.eus" /><br/></div>
+	Pasahitza(*):
+	<div><input type="password" name="pasahitza" /><br/></div>
+	Telefono zenbakia(*):
+	<div><input type="tel" name="telefonoa" placeholder="987654321" /><br/></div>
+	Espezialitatea(*):
+	<form onSubmit="FormSubmit(this);">
+	<input type="hidden" name="special" />
+	<div><select name="special_ddl" onchange="DropDownChanged(this);">
+		<option value="1">Konputazioa</option>
+		<option value="2">Software Ingeniaritza</option>
+		<option value="3">Konputagailuen Ingeniaritza</option>
+		<option value="">Besterik</option>
+  </select><br/></div> 
+  <input type="text" name="besterik" placeholder="espezialitatea" style="display: none; " /><br/>
   Interesak:
-  <br/>
+  <div><br/>
 	<textarea rows="10" cols="40" name="interesak" placeholder="arrauna" ></textarea>
-  <br/>  
+  <br/></div> 
 	Igo ezazu irudia:<br/>
-	<input name="uploadedfile" type="file" accept="image/*" onchange="irudiaIgo(this)"/><br/>
-	<img id="img" src="" alt="irudia hemen" style="width:15%; margin-top:10px;"/><br/>
-    <input type="submit" name="botoia" value="Bidali" /><br/>
+	<div><input name="uploadedfile" type="file" accept="image/*" onchange="irudiaIgo(this)"/><br/></div>
+	<div><img id="img" src="" alt="irudia hemen" style="width:15%; margin-top:10px;"/><br/></div>
+    <div><input type="submit" name="botoia" value="Bidali" /><br/></div>
 	<span><a href='layout.html'><img src="http://www.pngall.com/wp-content/uploads/2016/04/Home-PNG-File.png" alt="atzera" width="50" height="50" align="left"></a></span>	
 	</body>
 </html>
