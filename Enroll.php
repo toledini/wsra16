@@ -42,12 +42,13 @@
 			
 			$balioa = "INSERT INTO erabiltzaile(izena,abizena1,abizena2,eposta,pasahitza,telefonoa,espezialitatea,interesak) VALUES ('$_POST[izena]','$_POST[abizena1]','$_POST[abizena2]','$_POST[eposta]','$_POST[pasahitza]','$_POST[telefonoa]','$_POST[espezialitatea]','$_POST[interesak]')";
 		
-
 			if (!$niremysql -> query($balioa)){
 				die("<p>Errore bat gertatu da: ".$niremysql -> error."</p>");
 			}
 
-			echo("Erregistroa zuzen gauzatu da.");
+			echo "
+			<p>Modu egokian erregistratu zara. </p>
+			<p><a href = 'ShowUsers.php'>Erabiltzaileak ikusi</p>";
 			
 	}
 	
