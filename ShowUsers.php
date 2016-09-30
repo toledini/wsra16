@@ -1,6 +1,7 @@
 <?php 
 	
-	$niremysql = new mysqli("localhost","root","","quiz");	
+	//$niremysql = new mysqli("localhost","root","","quiz");
+	$niremysql = new mysqli("mysql.hostinger.es","u980005360_tol","pmUuYUX8TL","u980005360_quiz");	
 		
 	if($niremysql->connect_errno) {
 		die( "Konexioan errorea gertatu da: (". 
@@ -8,7 +9,7 @@
 		$niremysql->connect_error()	);
 	}
 		
-	$hautatu = "Select * from erabiltzaile";
+	$hautatu = "SELECT * FROM erabiltzaile";
 	$balioak = $niremysql -> query ($hautatu);
 		
 	echo "<h1> Erabiltzaileen zerrenda </h1>";
@@ -29,5 +30,10 @@
 				echo '<tr><td>'.$ilara['EPOSTA'].'</td> <td>'. $ilara['IZENA']. '</td> <td>'. $ilara['ABIZENA1']. '</td> <td>'. $ilara['ABIZENA2']. '</td> <td>'. $ilara['PASAHITZA'].'</td> <td>'. $ilara['TELEFONOA'].'</td> <td>'. $ilara['ESPEZIALITATEA'].'</td> <td>'. $ilara['INTERESAK'].'</td></tr>';
 			}
 		}
+		
+	echo "
+			<p><a href = 'layout.html'>Goazen hasierako orrira.</a></p>";
+			
+	mysqli_close($niremysql);
 	
 ?>
