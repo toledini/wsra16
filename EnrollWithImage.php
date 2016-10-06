@@ -13,6 +13,19 @@
 		$espezialitate = $_POST['beste'];
 	}
 	
+	//argazkia tratatuko dugu
+	
+	$file= $_FILES['irudia']['tmp_name'];
+	$irudia=null;
+	$irudi_izena="";
+	if(!isset($file))
+		echo "Argazkirik gabeko erabiltzailea";
+	else
+	{
+		$irudia= addslashes(file_get_contents($_FILES['irudia']['tmp_name']));
+		$irudi_izena= addslashes($_FILES['irudia']['name']);
+	}
+	
 	//datuak jaso eta irakurri
 	
 	$izena = $_POST['izena'];
@@ -57,7 +70,7 @@
 		}else{
 			$pass = crypt($pass, 'st');
 			
-				$balioa = "INSERT INTO erabiltzaile(izena,abizena1,abizena2,eposta,pasahitza,telefonoa,espezialitatea,interesak) VALUES ('$_POST[izena]','$_POST[abizena1]','$_POST[abizena2]','$_POST[eposta]','$_POST[pasahitza]','$_POST[telefonoa]','$espezialitate','$_POST[interesak]')";
+				$balioa = "INSERT INTO erabiltzaile(izena,abizena1,abizena2,eposta,pasahitza,telefonoa,espezialitatea,interesak,argazkia,argazki_mota) VALUES ('$_POST[izena]','$_POST[abizena1]','$_POST[abizena2]','$_POST[eposta]','$_POST[pasahitza]','$_POST[telefonoa]','$espezialitate','$_POST[interesak]','$irudia','$irudi_izena')";
 				
 			if (!$niremysql -> query($balioa)){
 				die("<p>Errore bat gertatu da: ".$niremysql -> error."</p>");
@@ -65,7 +78,7 @@
 
 			echo "
 			<p>Modu egokian erregistratu zara. </p>
-			<p><a href = 'ShowUsers.php'>Erabiltzaileak ikusi</a></p>";
+			<p><a href = 'ShowUsersWithImage.php'>Erabiltzaileak ikusi</a></p>";
 			
 	}
 	mysqli_close($niremysql);

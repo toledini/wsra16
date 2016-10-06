@@ -23,11 +23,12 @@
 	<th> Telefonoa </th>
 	<th> Espezialitatea </th>
 	<th> Interesak </th>
+	<th> Argazkia </th>
 	</tr>';	
 	
 	while($ilara = mysqli_fetch_assoc($balioak)){
 			if($ilara['EPOSTA'] != "web000@ehu.es"){
-				echo '<tr><td>'.$ilara['EPOSTA'].'</td> <td>'. $ilara['IZENA']. '</td> <td>'. $ilara['ABIZENA1']. '</td> <td>'. $ilara['ABIZENA2']. '</td> <td>'. $ilara['PASAHITZA'].'</td> <td>'. $ilara['TELEFONOA'].'</td> <td>'. $ilara['ESPEZIALITATEA'].'</td> <td>'. $ilara['INTERESAK'].'</td></tr>';
+				echo '<tr><td>'.$ilara['EPOSTA'].'</td> <td>'. $ilara['IZENA']. '</td> <td>'. $ilara['ABIZENA1']. '</td> <td>'. $ilara['ABIZENA2']. '</td> <td>'. $ilara['PASAHITZA'].'</td> <td>'. $ilara['TELEFONOA'].'</td> <td>'. $ilara['ESPEZIALITATEA'].'</td> <td>'. $ilara['INTERESAK'].'</td> <td> <img <img src="data:image/jpeg;base64,'.base64_encode( $ilara['ARGAZKIA'] ).'" width="100" height="100"/></td></tr>';
 			}
 		}
 		
