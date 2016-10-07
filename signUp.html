@@ -141,7 +141,7 @@
   </head>
   <body>
     <h1>Formularioa:</h1>
-	<form name="erregistro" method="post" action="EnrollWithImage.php" accept-charset="utf-8" onsubmit="return balidatu()" >
+	<form name="erregistro" method="post" action="Enroll.php" accept-charset="utf-8" onsubmit="return balidatu()" >
 	Izena(*):
 	<div><input type="text" name="izena" placeholder="Josu" /><br/></div>
 	1.abizena(*):
@@ -168,8 +168,8 @@
 	<textarea rows="10" cols="40" name="interesak" placeholder="arrauna" ></textarea>
   <br/></div> 
 	Igo ezazu irudia:<br/>
-	<div><input name="irudia" id="irudia" type="file" accept="image/*" onchange="irudiaIgo(event)"/><br/></div>
-	<div><img id="aurrekoa" onload="tamainaAldatu(this,150,300)"/><br/></div>
+	<div><input name="image" id="image" type="file" accept="image/*" onchange="irudiaIgo(event)"/><br/></div>
+	<div><img id="aurrekoa" onload="tamainaAldatu(this,125,250)"/><br/></div>
     <div><input type="submit" name="botoia" value="Bidali" class="btn" /><br/></div>
 	</form>
 	<span><a href='layout.html'><img src="http://www.pngall.com/wp-content/uploads/2016/04/Home-PNG-File.png" alt="atzera" width="50" height="50" align="left"></a></span>	
