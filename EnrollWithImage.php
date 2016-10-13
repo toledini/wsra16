@@ -1,7 +1,7 @@
 <?php
 
-	//$niremysql = new mysqli("localhost","root","","quiz");
-	$niremysql = new mysqli("mysql.hostinger.es","u980005360_tol","joantol","u980005360_quiz");
+	$niremysql = new mysqli("localhost","root","","quiz");
+	//$niremysql = new mysqli("mysql.hostinger.es","u980005360_tol","joantol","u980005360_quiz");
 	
 	if ($niremysql->connect_error) {
 		printf("Konexio errorea: " . $niremysql->connect_error);
@@ -35,17 +35,17 @@
 	$interes = $_POST['interesak'];
 	
 	
-	if(filter_var($izena, FILTER_VALIDATE_REGEXP,array("options"=>array("regexp"=>"/([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*){1,2}/")))=== false){
+	if(filter_var($izena, FILTER_VALIDATE_REGEXP,array("options"=>array("regexp"=>"/([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[ ]*){1,2}/")))=== false){
 			echo "<script type=\"text/javascript\">
 			    alert('Izena ez da zuzena.');
 				history.go(-1);
 				</script>";
-		}else if(filter_var($abizena1, FILTER_VALIDATE_REGEXP,array("options"=>array("regexp"=>"/([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*)+/")))=== false){
+		}else if(filter_var($abizena1, FILTER_VALIDATE_REGEXP,array("options"=>array("regexp"=>"/([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[ ]*)+/")))=== false){
 			echo "<script type=\"text/javascript\">
 			    alert('Lehen abizena ez da zuzena.');
 				history.go(-1);
 				</script>";
-		}else if(filter_var($abizena2, FILTER_VALIDATE_REGEXP,array("options"=>array("regexp"=>"/([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*)+/")))=== false){
+		}else if(filter_var($abizena2, FILTER_VALIDATE_REGEXP,array("options"=>array("regexp"=>"/([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[ ]*)+/")))=== false){
 			echo "<script type=\"text/javascript\">
 			    alert('Bigarren abizena ez da zuzena.');
 				history.go(-1);
@@ -55,7 +55,7 @@
 			    alert('Emaila ez da zuzena, EHU posta izan behar du.');
 				history.go(-1);
 				</script>";
-		}else if(filter_var($pass, FILTER_VALIDATE_REGEXP,array("options"=>array("regexp"=>"/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])([A-Za-z\d$@$!%*?&]|[^ ]){6,}/")))=== false){
+		}else if(filter_var($pass, FILTER_VALIDATE_REGEXP,array("options"=>array("regexp"=>"/[a-zA-Z0-9]{6,}/")))=== false){
 			echo "<script type=\"text/javascript\">
 			    alert('Pasahitza ez da zuzena.');
 				history.go(-1);

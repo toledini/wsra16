@@ -58,20 +58,20 @@
     <h1>Formularioa:</h1>
 	<form id="erregistro" name="erregistro" onSubmit="ikusBalioak()" enctype="multipart/form-data">
 	Izena(*):
-	<div><input type="text" name="izena" required pattern="([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*){1,2}" placeholder="Josu"
+	<div><input type="text" name="izena" required pattern="([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[ ]*){1,2}" placeholder="Josu"
 	title="Sartu baliozko izena maiuskula batekin hasita." onchange="this.setCustomValidity(this.validity.patternMismatch ? this.title : '');"/><br/></div>
 	1.abizena(*):
-	<div><input type="text" name="abizena1" required pattern="([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*)+" placeholder="Arruarte" 
+	<div><input type="text" name="abizena1" required pattern="([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[ ]*)+" placeholder="Arruarte" 
 	title="Sartu baliozko abizena maiuskula batekin hasita." onchange="this.setCustomValidity(this.validity.patternMismatch ? this.title : '');"/><br/></div>
 	2.abizena(*):
-	<div><input type="text" name="abizena2" required pattern="([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*)+" placeholder="Freud" 
+	<div><input type="text" name="abizena2" required pattern="([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[ ]*)+" placeholder="Freud" 
 	title="Sartu baliozko abizena maiuskula batekin hasita." onchange="this.setCustomValidity(this.validity.patternMismatch ? this.title : '');"/><br/></div>
 	Eposta elektronikoa(*):
 	<div><input type="email" name="eposta" required pattern="[a-z]+[0-9]{3}@ikasle\.ehu\.(es|eus)" placeholder="jarruarte007@ikasle.ehu.eus" 
 	title="EHU postako korreoa izan behar du." onchange="this.setCustomValidity(this.validity.patternMismatch ? this.title : '');"/><br/></div>
 	Pasahitza(*):
-	<div><input type="password" name="pasahitza" required pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])([A-Za-z\d$@$!%*?&]|[^ ]){6,}" 
-	title="Pasahitzak 6 karaktere behar ditu, adierazitako formatuarekin: gutxienez maiuskula bat, minuskula bat, digitu bat eta karaktere espezial bat behar ditu inongo espaziorik gabe." 
+	<div><input type="password" name="pasahitza" required pattern="[a-zA-Z0-9]{6,}" 
+	title="Pasahitzak 6 karaktere behar ditu, adierazitako formatuarekin: maiuskulaz, minuskulaz edo digituz betea behar du edo hiruren arteko konbinaketa bat eta inongo espaziorik gabe." 
 	onchange="this.setCustomValidity(this.validity.patternMismatch ? this.title : '');"/><br/></div>
 	Telefono zenbakia(*):
 	<div><input type="tel" name="telefonoa" required pattern="[0-9]{9}" placeholder="987654321" 

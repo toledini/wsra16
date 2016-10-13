@@ -41,9 +41,8 @@
 						if(frm.elements[i].name == "pasahitza"){
 							if(!checkPass(frm.elements[i].value.trim())){
 								betetzear += "pasahitzak 6 karaktere baina gutxiago ditu\n" ;
-								betetzear += "Gogoratu pasahitzak ondoko ezaugarriak bete behar dituela\n" ;
-								betetzear += "- Gutxienez hizki maiuskula eta minuskula bat\n" ;
-								betetzear += "- Gutxienez digitu bat eta karaktere espezial bat\n" ;
+								betetzear += "Gogoratu pasahitzak ondoko ezaugarriak bete behar dituela:\n" ;
+								betetzear += "- Maiuskulaz, minuskulaz edo digituz betea edo hiruren arteko konbinaketa\n" ;
 								betetzear += "- Ez du espazio txuririk izan behar\n" ;
 							}
 						}
@@ -68,7 +67,7 @@
 		}
 
 		function checkName(balioa){
-			expresioa = RegExp(/^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*){1,2}$/);
+			expresioa = RegExp(/^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[ ]*){1,2}$/);
 			if(expresioa.test(balioa)){
 				return true;
 			}
@@ -76,7 +75,7 @@
 		}
 		
 		function checkSurname(balioa){
-			expresioa = RegExp(/^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*)+$/);
+			expresioa = RegExp(/^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[ ]*)+$/);
 			if(expresioa.test(balioa)){
 				return true;
 			}
@@ -84,7 +83,7 @@
 		}
 		
 		function checkPass(balioa){
-			expresioa = RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])([A-Za-z\d$@$!%*?&]|[^ ]){6,}$/);
+			expresioa = RegExp(/^[a-zA-Z0-9]{6,}$/);
 			if(expresioa.test(balioa)){
 				return true;
 			}

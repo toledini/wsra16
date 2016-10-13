@@ -35,8 +35,8 @@
     <form id="sartu" name="sartu" onSubmit="ikusBalioak()" enctype="multipart/form-data">
       <div><input class="mainLoginInput" type="email" name="eposta" required pattern="[a-z]+[0-9]{3}@ikasle\.ehu\.(es|eus)" placeholder="&#61447; jarruarte007@ikasle.ehu.eus"
 	  title="EHU postako korreoa izan behar du." onchange="this.setCustomValidity(this.validity.patternMismatch ? this.title : '');" /><br/></div>
-      <div><input class="mainLoginInput" type="password" name="pasahitza" required pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])([A-Za-z\d$@$!%*?&]|[^ ]){6,}" placeholder="&#61475;"
-	  title="Pasahitzak 6 karaktere behar ditu, adierazitako formatuarekin." onchange="this.setCustomValidity(this.validity.patternMismatch ? this.title : '');"/><br/></div>
+      <div><input class="mainLoginInput" type="password" name="pasahitza" required pattern="[a-zA-Z0-9]{6,}" placeholder="&#61475;"
+	  title="Pasahitzak 6 karaktere behar ditu, adierazitako formatuarekin: maiuskulaz, minuskulaz edo digituz betea behar du edo hiruren arteko konbinaketa bat eta inongo espaziorik gabe." onchange="this.setCustomValidity(this.validity.patternMismatch ? this.title : '');"/><br/></div>
       <div><input type="submit" name="login" value="Login" /><br/></div>
 
     </form>
