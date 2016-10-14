@@ -1,5 +1,6 @@
 <?php
 
+	session_start();
 	$niremysql = new mysqli("localhost","root","","quiz");
 	//$niremysql = new mysqli("mysql.hostinger.es","u980005360_tol","joantol","u980005360_quiz");
 	
@@ -25,6 +26,7 @@
 					$arg = $niremysql->query("SELECT * FROM erabiltzaile WHERE eposta='$eposta' and pasahitza='$pasahitza'");	
 					$row = mysqli_num_rows( $arg );
 					if($row > 0){
+						setcookie("ErabiltzaileLog",$eposta);
 						header('Location:InsertQuestion.php');
 					}else{
 						echo "<script type=\"text/javascript\">
