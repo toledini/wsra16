@@ -1,7 +1,23 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta name="tipo_contenido" content="width=device-width, initial-scale=1" http-equiv="content-type" charset="utf-8">
+	<title>EnrollWithImage</title>
+    <link rel='stylesheet' type='text/css' href='stylesPWS/style.css' />
+	<link rel='stylesheet' 
+		   type='text/css' 
+		   media='only screen and (min-width: 530px) and (min-device-width: 481px)'
+		   href='stylesPWS/wide.css' />
+	<link rel='stylesheet' 
+		   type='text/css' 
+		   media='only screen and (max-width: 480px)'
+		   href='stylesPWS/smartphone.css' />
+</head>
+</html>
 <?php
 
-	$niremysql = new mysqli("localhost","root","","quiz");
-	//$niremysql = new mysqli("mysql.hostinger.es","u980005360_tol","joantol","u980005360_quiz");
+	//$niremysql = new mysqli("localhost","root","","quiz");
+	$niremysql = new mysqli("mysql.hostinger.es","u980005360_tol","joantol","u980005360_quiz");
 	
 	if ($niremysql->connect_error) {
 		printf("Konexio errorea: " . $niremysql->connect_error);
@@ -76,7 +92,8 @@
 
 			echo "
 			<p>Modu egokian erregistratu zara. </p>
-			<p><a href = 'ShowUsersWithImage.php'>Erabiltzaileak ikusi</a></p>";
+			<p><a href = 'ShowUsersWithImage.php'>Erabiltzaileak ikusi</a></p>
+			<p><a href = 'Login.html'>Logeatu nahi izanez gero, sakatu hemen.</a></p>";
 			
 	}
 	mysqli_close($niremysql);

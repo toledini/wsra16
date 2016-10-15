@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta name="tipo_contenido" content="width=device-width, initial-scale=1" http-equiv="content-type" charset="utf-8">
-	<title>Sartu</title>
+	<title>InsertQuestion</title>
     <link rel='stylesheet' type='text/css' href='stylesPWS/style.css' />
 	<link rel='stylesheet' 
 		   type='text/css' 
@@ -91,12 +91,14 @@
 	</select><br/></div>
       <div><input type="submit" name="bidali" value="Bidali" />
 	  <input type="reset" name="reset "value="Reset" class="btn"><br/></div>
+	  <div><span><a href='ShowQuestions.php'>Ikusi galderak</a></span><br/></div>
+	  
 
 <?php
 	
 	session_start();
-	$niremysql = new mysqli("localhost","root","","quiz");
-	//$niremysql = new mysqli("mysql.hostinger.es","u980005360_tol","joantol","u980005360_quiz");
+	//$niremysql = new mysqli("localhost","root","","quiz");
+	$niremysql = new mysqli("mysql.hostinger.es","u980005360_tol","joantol","u980005360_quiz");
 	
 	if ($niremysql->connect_error) {
 		printf("Konexio errorea: " . $niremysql->connect_error);
@@ -113,11 +115,19 @@
 	$eposta=$_COOKIE["ErabiltzaileLog"];
 	
 	if (isset($_POST['bidali'])) {
-		$balioa = "INSERT INTO galderak (eposta, galdera, erantzuna, zailtasuna) VALUES ('$eposta','$galdera','$erantzuna','$zailtasun')"; 
-		if (!$niremysql -> query($balioa)){
-			die("<p>Errorea gertatu da: ".$niremysql -> error ."</p>");
+		if($galdera!=""){
+			if($erantzuna!=""){
+				$balioa = "INSERT INTO galderak (eposta, galdera, erantzuna, zailtasuna) VALUES ('$eposta','$galdera','$erantzuna','$zailtasun')"; 
+				if (!$niremysql -> query($balioa)){
+					die("<p>Errorea gertatu da: ".$niremysql -> error ."</p>");
+				}else{
+					echo 'Galdera zuzen sartu da';
+				}
+			}else{
+				echo 'Erantzuna hutsa dago';
+			}
 		}else{
-			echo 'Galdera zuzen sartu da';
+			echo 'Galdera hutsa dago';
 		}
 	}else{
 		echo 'Sartu datuak eta sakatu Bidali';
