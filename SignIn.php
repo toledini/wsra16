@@ -26,6 +26,13 @@
 					$arg = $niremysql->query("SELECT * FROM erabiltzaile WHERE eposta='$eposta' and pasahitza='$pasahitza'");	
 					$row = mysqli_num_rows( $arg );
 					if($row > 0){
+						$dataordua=Date('Y-m-d H:i:s');;
+						$balioa = "INSERT INTO konexioak (eposta, data) VALUES ('$eposta','$dataordua')"; 
+						if (!$niremysql -> query($balioa)){
+							die("<p>Errorea gertatu da: ".$niremysql -> error ."</p>");
+						}else{
+							echo 'Konexioa zuzen sartu da';
+						}
 						setcookie("ErabiltzaileLog",$eposta);
 						header('Location:InsertQuestion.php');
 					}else{
