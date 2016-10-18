@@ -123,7 +123,7 @@
 				}else{
 					echo 'Galdera zuzen sartu da';
 				}
-				if(!$ident= $niremysql-> query("SELECT identifikazioa FROM konexioak WHERE eposta='$eposta'")){
+				if(!$ident= $niremysql-> query("SELECT identifikazioa FROM konexioak WHERE eposta='$eposta' ORDER BY identifikazioa DESC LIMIT 1")){
 						die("<p>Errore bat gertatu da: ".$niremysql -> error."</p>");
 				}
 				$row = mysqli_fetch_array($ident);
