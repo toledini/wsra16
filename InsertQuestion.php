@@ -18,7 +18,7 @@
 			var betetzear ="";
 			var frm=document.getElementById("gald");
 			for(i=0;i<frm.elements.length;i++){
-				if(frm.elements[i].name == "galdera" || frm.elements[i].name == "erantzuna"){
+				if(frm.elements[i].name == "galdera" || frm.elements[i].name == "erantzuna" || frm.elements[i].name=="gaia"){
 					if(frm.elements[i].value.trim()==""){
 						errorea +=" | "+ frm.elements[i].name;
 					}else{
@@ -110,10 +110,10 @@
 				$galdera= $_POST["galdera"];
 				$erantzuna= $_POST["erantzuna"];
 				$zailtasun= $_POST["zailtasuna"];
+				$gaia= $_POST["gaia"];
 								
 	}
 	
-	$gaia= $_POST["gaia"];
 	$eposta=$_COOKIE["ErabiltzaileLog"];
 	
 	if (isset($_POST['bidali'])) {
