@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<assessmentItems>
+	<assessmentItem complexity="3" subject="mikologia">
+		<itemBody> 
+			<p>Amanita muskaria zer da?</p>
+		</itemBody>
+		<correctResponse>
+			<value>Perretxikoa</value>
+		</correctResponse>
+	</assessmentItem>
+	<assessmentItem complexity="5" subject="mikologia">
+		<itemBody>
+			<p>Amanita hilkorrena zein da?</p>
+		</itemBody>
+		<correctResponse>
+			<value>Phalloides</value>
+		</correctResponse>
+	</assessmentItem>
+	<assessmentItem complexity="4" subject="mikologia">
+		<itemBody>
+			<p>Amanita cesarea jangarria da. Bai ala Ez?</p>
+		</itemBody>
+		<correctResponse>
+			<value>Bai</value>
+		</correctResponse>
+	</assessmentItem>
+<assessmentItem complexity=" " subject="mikologia"><itemBody><p>odv</p></itemBody><correctResponse><value>kvf</value></correctResponse></assessmentItem><assessmentItem complexity=" " subject="mikologia"><itemBody><p>v</p></itemBody><correctResponse><value>rg</value></correctResponse></assessmentItem><assessmentItem complexity=" " subject="mikologia"><itemBody><p>Nor gara?</p></itemBody><correctResponse><value>gu</value></correctResponse></assessmentItem><assessmentItem complexity="3" subject="Web Sistemak"><itemBody><p>Zein da hipertestuen transferentziarako protokoloa?</p></itemBody><correctResponse><value>HTTP</value></correctResponse></assessmentItem><assessmentItem complexity="3" subject="Web Sistemak"><itemBody><p>Zein da fitxategien transferentziarako protokoloa?</p></itemBody><correctResponse><value>FTP</value></correctResponse></assessmentItem><assessmentItem complexity=" " subject="Web Sistemak"><itemBody><p>Nor izan zen Webaren sortzailea?</p></itemBody><correctResponse><value>Tim Berners Lee</value></correctResponse></assessmentItem><assessmentItem complexity="5" subject="Web Sistemak"><itemBody><p>Nork diseinatu zuen PHP?</p></itemBody><correctResponse><value>Rasmus Lerdorf</value></correctResponse></assessmentItem><assessmentItem complexity="1" subject="Web Sistemak"><itemBody><p>PHP lizentzia software librea al da?</p></itemBody><correctResponse><value>Bai</value></correctResponse></assessmentItem><assessmentItem complexity="1" subject="Web Sistemak"><itemBody><p>Formulario bat baino gehiago jar daitezke dokumentu berean?</p></itemBody><correctResponse><value>Bai</value></correctResponse></assessmentItem></assessmentItems>
