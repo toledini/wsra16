@@ -89,6 +89,18 @@
 			if (!$niremysql -> query($balioa)){
 				die("<p>Errore bat gertatu da: ".$niremysql -> error."</p>");
 			}
+			$fitxategi= simplexml_load_file('erabiltzaileak.xml');
+				$item= $fitxategi->addChild('erabiltzailea');
+				$item->addChild('eposta',$posta);
+				$item->addChild('izena',$izena);
+				$item->addChild('abizena1',$abizena1);
+				$item->addChild('abizena2',$abizena2);
+				$item->addChild('telefonoa',$tel);
+				if($fitxategi->asXML('erabiltzaileak.xml') == 1){
+					echo "Ondo txertatu da XML fitxategian.";
+				}else{
+					echo "Gaizki txertatu da XML fitxategian.";
+				}
 
 			echo "
 			<p>Modu egokian erregistratu zara. </p>

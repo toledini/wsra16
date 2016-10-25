@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" ?>
+<?xml version="1.0"?>
 <erabiltzaileak>
 	<erabiltzailea>
 		<eposta>jmperez001@ikasle.ehu.eus</eposta>
@@ -27,5 +27,26 @@
 		<abizena1>Alonso</abizena1>
 		<abizena2>Arrieta</abizena2>
 		<telefonoa>696756463</telefonoa>
+      </erabiltzailea>
+	  <erabiltzailea>
+        <eposta>gtoledo004@ikasle.ehu.es</eposta>
+		<izena>Gorka</izena>
+		<abizena1>Toledo</abizena1>
+		<abizena2>Pellejero</abizena2>
+		<telefonoa>123456789</telefonoa>
+     </erabiltzailea>
+	 <erabiltzailea>
+        <eposta>jsigmund001@ikasle.ehu.es</eposta>
+		<izena>Joziok</izena>
+		<abizena1>Sigmund</abizena1>
+		<abizena2>Freud</abizena2>
+		<telefonoa>123456789</telefonoa>
+      </erabiltzailea>
+	  <erabiltzailea>
+        <eposta>jalza004@ikasle.ehu.es</eposta>
+		<izena>Joan</izena>
+		<abizena1>Alza</abizena1>
+		<abizena2>Santos</abizena2>
+		<telefonoa>123456789</telefonoa>
       </erabiltzailea>
 </erabiltzaileak>
