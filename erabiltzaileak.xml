@@ -1,4 +1,12 @@
 <?xml version="1.0"?>
+<!DOCTYPE erabiltzailea [
+<!ELEMENT erabiltzailea (eposta , izena , abizena1 , abizena2 , telefonoa)>
+<!ELEMENT eposta (#PCDATA)>
+<!ELEMENT izena (#PCDATA)>
+<!ELEMENT abizena1 (#PCDATA)>
+<!ELEMENT abizena2 (#PCDATA)>
+<!ELEMENT telefonoa (#PCDATA)>
+]>
 <erabiltzaileak>
 	<erabiltzailea>
 		<eposta>jmperez001@ikasle.ehu.eus</eposta>
