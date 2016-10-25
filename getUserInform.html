@@ -27,13 +27,14 @@
 			var abizen2Zer=xmlDoc.getElementsByTagName("abizena2");
 			var tfnoZer=xmlDoc.getElementsByTagName("telefonoa");
 			for (var i = 0; i < epostenZer.length; i++) {
-			if (kor==epostenZer[i].childNodes[0].nodeValue){
-			document.getElementById('izena').value=izenenZer[i].childNodes[0].nodeValue;
-			document.getElementById('abizena1').value=abizen1Zer[i].childNodes[0].nodeValue;
-			document.getElementById('abizena2').value=abizen2Zer[i].childNodes[0].nodeValue;
-			document.getElementById('telefonoa').value=tfnoZer[i].childNodes[0].nodeValue;
-			dago=true;
-			break;}
+				if (kor==epostenZer[i].childNodes[0].nodeValue){
+					document.getElementById('izena').value=izenenZer[i].childNodes[0].nodeValue;
+					document.getElementById('abizena1').value=abizen1Zer[i].childNodes[0].nodeValue;
+					document.getElementById('abizena2').value=abizen2Zer[i].childNodes[0].nodeValue;
+					document.getElementById('telefonoa').value=tfnoZer[i].childNodes[0].nodeValue;
+					dago=true;
+					break;
+				}
 			}
 			if (!dago)
 			{alert ('Eposta hau ez dago UPV/EHUn erregistraturik. Sar ezazu beste bat');}
@@ -47,19 +48,20 @@
 	<object id="datuak" data="erabiltzaileak.xml" type="text/xml" style="display:none"> 
 	</object>
 	<form>
-	Erabiltzaile baten informazioa osatu nahi ezkero, sartu bere eposta:<br/>
-	Eposta elektronikoa(*):
-	<div><input type="text" title="EHU posta" name="eposta" placeholder="jarruarte007@ikasle.ehu.eus" required="required" /><br/></div>
-	Izena:
-	<div><input type="text" name="izena" placeholder="Josu" /><br/></div>
-	1.abizena:
-	<div><input type="text" name="abizena1" placeholder="Arruarte" /><br/></div>
-	2.abizena:
-	<div><input type="text" name="abizena2" placeholder="Freud" /><br/></div>
-	Telefono zenbakia:
-	<div><input type="tel" name="telefonoa" placeholder="987654321" /><br/></div>
-    <div><input type="button" value="osatze_automatikoa" onClick="javascript:osatu()"><br/>
-	<span><a href="getUserInform.html">Beste erabiltzaile baten informazioa ikusi.</a></span><br/>
+		Erabiltzaile baten informazioa osatu nahi ezkero, sartu bere eposta:<br/>
+		Eposta elektronikoa(*):
+		<div><input type="text" title="EHU posta" name="eposta" id="eposta" placeholder="jarruarte007@ikasle.ehu.eus" required /><br/></div>
+		Izena:
+		<div><input type="text" name="izena" id="izena" placeholder="Josu" /><br/></div>
+		1.abizena:
+		<div><input type="text" name="abizena1" id="abizena1" placeholder="Arruarte" /><br/></div>
+		2.abizena:
+		<div><input type="text" name="abizena2" id="abizena2" placeholder="Freud" /><br/></div>
+		Telefono zenbakia:
+		<div><input type="tel" name="telefonoa" id="telefonoa" placeholder="987654321" /><br/></div>
+		
+		<div><input type="button" value="osatze_automatikoa" onClick="javascript:osatu()"/><br/></div>
+		<span><a href="getUserInform.html">Beste erabiltzaile baten informazioa ikusi.</a></span><br/>
 	</form>
 	<span><a href='layout.html'><img src="http://www.freeiconspng.com/uploads/icones-png-theme-home-19.png" alt="atzera" width="50" height="50" align="left"></a></span>	
 	</body>
