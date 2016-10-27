@@ -23,6 +23,7 @@
 		</tr>
 	</xsl:for-each>
 	</table>
+			<p><a href = 'layout.html'>Goazen hasierako orrira.</a></p>
 </body>
 </html>
 </xsl:template>

@@ -1,4 +1,5 @@
 <?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="seeXMLQuestions.xsl"?>
 <assessmentItems>
 	<assessmentItem complexity="3" subject="mikologia">
 		<itemBody> 
@@ -24,4 +25,4 @@
 			<value>Bai</value>
 		</correctResponse>
 	</assessmentItem>
-<assessmentItem complexity="2" subject="mikologia"><itemBody><p>Gibelurdina perretxikoa al da?</p></itemBody><correctResponse><value>Bai</value></correctResponse></assessmentItem><assessmentItem complexity="2" subject="kultura"><itemBody><p>Abenduko zein egunetan ospatzen da Santo Tomas azoka?</p></itemBody><correctResponse><value>21</value></correctResponse></assessmentItem></assessmentItems>
+<assessmentItem complexity="2" subject="mikologia"><itemBody><p>Gibelurdina perretxikoa al da?</p></itemBody><correctResponse><value>Bai</value></correctResponse></assessmentItem><assessmentItem complexity="2" subject="kultura"><itemBody><p>Abenduko zein egunetan ospatzen da Santo Tomas azoka?</p></itemBody><correctResponse><value>21</value></correctResponse></assessmentItem><assessmentItem complexity="1" subject="Web Sistemak"><itemBody><p>Zein ikasturtetan ematen da Web Sistemak irakasgaia?</p></itemBody><correctResponse><value>3</value></correctResponse></assessmentItem><assessmentItem complexity="3" subject="Web Sistemak"><itemBody><p>Lab6ko helburua zein da?</p></itemBody><correctResponse><value>AJAX ikastea</value></correctResponse></assessmentItem><assessmentItem complexity="1" subject="Matematika"><itemBody><p>Zenbat hanka dituzte denera 5 behik?</p></itemBody><correctResponse><value>20</value></correctResponse></assessmentItem><assessmentItem complexity="1" subject="Matematika"><itemBody><p>4ren erro karratua zenbat da?</p></itemBody><correctResponse><value>2</value></correctResponse></assessmentItem><assessmentItem complexity="2" subject="Matematika"><itemBody><p>Zenbat hanka dituzte 5 untxik eta 4 behik?</p></itemBody><correctResponse><value>36</value></correctResponse></assessmentItem><assessmentItem complexity="1" subject="Matematika"><itemBody><p>Zenbat hanka dituzte 5 untxik?</p></itemBody><correctResponse><value>20</value></correctResponse></assessmentItem></assessmentItems>

@@ -36,7 +36,9 @@
 	}
 		
 	echo "
-			<p><a href = 'layout.html'>Goazen hasierako orrira.</a></p>";
+			<p><a href = 'layout.html'>Goazen hasierako orrira.</a></p>
+			<p><a href = 'galderak.xml'>Erakutsi galderak xsl aplikatuta.</a></p>";
+			
 			
 	
 ?>

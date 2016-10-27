@@ -1,5 +1,4 @@
 <?xml version="1.0"?>
-
 <erabiltzaileak>
 	<erabiltzailea>
 		<eposta>jmperez001@ikasle.ehu.eus</eposta>
@@ -50,4 +49,4 @@
 		<abizena2>Santos</abizena2>
 		<telefonoa>123456789</telefonoa>
       </erabiltzailea>
-</erabiltzaileak>
+<erabiltzailea><eposta>ikasle666@ikasle.ehu.eus</eposta><izena>Rosa</izena><abizena1>Arr</abizena1><abizena2>San</abizena2><telefonoa>123456789</telefonoa></erabiltzailea><erabiltzailea><eposta>jarruarte004@ikasle.ehu.es</eposta><izena>Josu</izena><abizena1>Arruarte</abizena1><abizena2>Zapiain</abizena2><telefonoa>987654321</telefonoa></erabiltzailea></erabiltzaileak>
