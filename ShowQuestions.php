@@ -64,7 +64,7 @@
 	}
 		
 	echo "
-			<p><a href = 'InsertQuestion.php'>Atzera</a></p>
+			<p><a href = 'handlingQuizes.php'>Atzera</a></p>
 			<p><a href = 'layout.html'>Goazen hasierako orrira.</a></p>";
 			
 	mysqli_close($niremysql);

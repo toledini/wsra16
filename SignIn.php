@@ -34,7 +34,7 @@
 							echo 'Konexioa zuzen sartu da';
 						}
 						setcookie("ErabiltzaileLog",$eposta);
-						header('Location:InsertQuestion.php');
+						header('Location:handlingQuizes.php');
 					}else{
 						echo "<script type=\"text/javascript\">
 						alert('Erabiltzaile hori erregistratu gabea dago.');
