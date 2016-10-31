@@ -37,10 +37,24 @@
 		$("#Txerta").load("galderaGehitu.php",{galdera:gald, erantzuna:eran, gaia:gai, zailtasuna:zail} );
 		});
 	});
+	
+	Objektua = new XMLHttpRequest();
+	
+	function galderaKop(){
+		Objektua.open("POST","galderaKop.php",true);
+		Objektua.onreadystatechange = function(){
+			if((Objektua.readystate==4)&&(Objektua.status==200)){
+				document.getElementById('kopurua').innerHTML=Objektua.responseText;
+			}
+		}
+		Objektua.send();
+	}
+	setInterval(galderaKop,5000);
+	
   </script>
   
 </head>
-<body>
+<body onload="galderaKop()">
 
     <h2>
       QUIZen kudeaketa:
@@ -69,10 +83,12 @@
 	  
 	  
 	  <div id="Txerta" name="Txerta">
-		<p>Ondo txertatu al da galdera?</p>
 	  </div>
 	  
 	  <div id="Ikus" name="Ikus" style="visibility:hidden">
+	  </div>
+	  
+	  <div id="kopurua">
 	  </div>
 	  
 	  <div><span><a href='ShowQuestions.php'>Galdera guztiak ikusi nahi?</a></span><br/></div>
