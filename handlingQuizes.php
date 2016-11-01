@@ -41,15 +41,15 @@
 	Objektua = new XMLHttpRequest();
 	
 	function galderaKop(){
-		Objektua.open("POST","galderaKop.php",true);
+		Objektua.open('POST',"galderaKop.php",true);
 		Objektua.onreadystatechange = function(){
-			if((Objektua.readystate==4)&&(Objektua.status==200)){
+			if((Objektua.readyState==4)&&(Objektua.status==200)){
 				document.getElementById('kopurua').innerHTML=Objektua.responseText;
 			}
 		}
 		Objektua.send();
 	}
-	setInterval(galderaKop,5000);
+	setInterval(kopurua,5000);
 	
   </script>
   
@@ -88,7 +88,7 @@
 	  <div id="Ikus" name="Ikus" style="visibility:hidden">
 	  </div>
 	  
-	  <div id="kopurua">
+	  <div id="kopurua" name="kopurua">
 	  </div>
 	  
 	  <div><span><a href='ShowQuestions.php'>Galdera guztiak ikusi nahi?</a></span><br/></div>

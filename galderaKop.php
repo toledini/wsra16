@@ -17,20 +17,20 @@
 <?php
 
 	session_start();
-	$niremysql = new mysqli("localhost","root","","quiz");
-	//$niremysql = new mysqli("mysql.hostinger.es","u980005360_tol","joantol","u980005360_quiz");
+	//$niremysql = new mysqli("localhost","root","","quiz");
+	$niremysql = new mysqli("mysql.hostinger.es","u980005360_tol","joantol","u980005360_quiz");
 	
 	if ($niremysql->connect_error) {
 		printf("Konexio errorea: " . $niremysql->connect_error);
 	}
 	
 	$eposta=$_COOKIE["ErabiltzaileLog"];
-	
+					
 	$galderakDB = $niremysql -> query ("SELECT * FROM galderak");
-	$num_rows=mysqli_num_rows($galderakDB);
+	$rows=mysqli_num_rows($galderakDB);
 	
-	$galderakErab = $niremysql -> query ("SELECT * FROM galderak WHERE eposta=$eposta");
-	$num_rows2=mysqli_num_rows($galderakErab);
+	$galderakErab = $niremysql -> query ("SELECT * FROM galderak WHERE eposta='$eposta'");
+	$rows2=mysqli_num_rows($galderakErab);
 	
-	echo $eposta.' erabiltzailearen galdera kopurua / Datu-baseko galdera kopurua:'.$num_rows2.'/'.$num_rows.;
+	echo $eposta.' erabiltzailearen galdera-kopurua / Datu-basean dauden galdera-kopurua: '.$rows2.' / '.$rows;
 ?>
