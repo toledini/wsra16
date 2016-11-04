@@ -13,50 +13,6 @@
 		   media='only screen and (max-width: 480px)'
 		   href='stylesPWS/smartphone.css' />
 	<script type="text/javascript" language="JavaScript">
-				function balidatu(){
-			var errorea="";
-			var betetzear ="";
-			var frm=document.getElementById("gald");
-			for(i=0;i<frm.elements.length;i++){
-				if(frm.elements[i].name == "galdera" || frm.elements[i].name == "erantzuna" || frm.elements[i].name=="gaia"){
-					if(frm.elements[i].value.trim()==""){
-						errorea +=" | "+ frm.elements[i].name;
-					}else{
-						if(frm.elements[i].name == "galdera"){
-							if(!checkQuestion(frm.elements[i].value.trim())){
-								betetzear += " Galdera okerra: maiuskulaz hasten da eta hizkiak eta digituak onartzen dira galdera ikur batekin amaituz.\n" ;
-							}
-						}
-						if(frm.elements[i].name == "erantzuna"){
-							if(!checkAnswer(frm.elements[i].value.trim())){
-								betetzear += "Erantzuna ez da egokia: hizki edota digituz osatua egon behar du.\n" ;
-							}
-						}
-					}
-				}
-			}
-			if(errorea!= "" || betetzear != ""){
-				alert("Bete beharreko gakoak:\n\n   "  +errorea + " |\n\n Gaizki dauden elementuak:\n\n   "+betetzear+"\n");
-			}else{
-                ikusBalioak();
-			}
-		}
-		
-		function checkQuestion(balioa){
-			expresioa = RegExp(/^([A-Z]+[a-z]*[ ]|[0-9]+)([A-z]|[a-z]+[ ]*|[-*+\/]?[0-9]+[ ]*)*\?$/);
-			if(expresioa.test(balioa)){
-				return true;
-			}
-			return false;
-		}
-
-		function checkAnswer(balioa){
-			expresioa = RegExp(/^([A-Z]+[ ]*|[a-z]+[ ]*|[0-9]+[ ]*)+$/);
-			if(expresioa.test(balioa)){
-				return true;
-			}
-			return false;
-		}
 		
 		function ikusBalioak(){
 			var sAux="";
@@ -75,7 +31,7 @@
     <h2>
       Sartu galdera:
     </h2>
-    <form id="gald" name="gald" method="post" action="InsertQuestion.php" onSubmit="return balidatu()" enctype="multipart/form-data">
+    <form id="gald" name="gald" method="post" action="InsertQuestion.php" onSubmit="return ikusBalioak()" enctype="multipart/form-data">
       Galdera(*):
 	<div><textarea rows="10" cols="40" name="galdera" placeholder="Zein da hipertestuen transferentziarako protokoloa?" ></textarea><br/></div>
       Erantzuna(*):
@@ -99,8 +55,8 @@
 <?php
 	
 	session_start();
-	//$niremysql = new mysqli("localhost","root","","quiz");
-	$niremysql = new mysqli("mysql.hostinger.es","u980005360_tol","joantol","u980005360_quiz");
+	$niremysql = new mysqli("localhost","root","","quiz");
+	//$niremysql = new mysqli("mysql.hostinger.es","u980005360_tol","joantol","u980005360_quiz");
 	
 	if ($niremysql->connect_error) {
 		printf("Konexio errorea: " . $niremysql->connect_error);
@@ -117,12 +73,8 @@
 	$eposta=$_COOKIE["ErabiltzaileLog"];
 	
 	if (isset($_POST['bidali'])) {
-		if($galdera!="" && filter_var($galdera,FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/([A-Z]+[a-z]*[ ]|[0-9]+)([A-z]|[a-z]+[ ]*|[-*+\/]?[0-9]+[ ]*)*\?/"))) === false){
-			echo("Galderaren formatua ez da egokia. <br/>");
-		}else if($galdera==""){
+		if($galdera==""){
 			echo("Galdera hutsa dago. <br/>");
-		}else if($erantzuna!="" && filter_var($erantzuna,FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/^([A-Z]+[ ]*|[a-z]+[ ]*|[0-9]+[ ]*)+$/"))) === false){
-			echo("Erantzunaren formatua ez da egokia. <br/>");
 		}else if($erantzuna==""){
 			echo("Erantzuna hutsa dago. <br/>");
 		}else if($gaia==""){

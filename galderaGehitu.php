@@ -1,8 +1,8 @@
 <?php
 	
 	session_start();
-	//$niremysql = new mysqli("localhost","root","","quiz");
-	$niremysql = new mysqli("mysql.hostinger.es","u980005360_tol","joantol","u980005360_quiz");
+	$niremysql = new mysqli("localhost","root","","quiz");
+	//$niremysql = new mysqli("mysql.hostinger.es","u980005360_tol","joantol","u980005360_quiz");
 	
 	if ($niremysql->connect_error) {
 		printf("Konexio errorea: " . $niremysql->connect_error);
@@ -19,12 +19,8 @@
 	
 	$eposta=$_COOKIE["ErabiltzaileLog"];
 	
-	if($galdera!="" && filter_var($galdera,FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/([A-Z]+[a-z]*[ ]|[0-9]+)([A-z]|[a-z]+[ ]*|[-*+\/]?[0-9]+[ ]*)*\?/"))) === false){
-		echo("Galderaren formatua ez da egokia. <br/>");
-	}else if($galdera==""){
+	if($galdera==""){
 		echo("Galdera hutsa dago. <br/>");
-	}else if($erantzuna!="" && filter_var($erantzuna,FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/^([A-Z]+[ ]*|[a-z]+[ ]*|[0-9]+[ ]*)+$/"))) === false){
-		echo("Erantzunaren formatua ez da egokia. <br/>");
 	}else if($erantzuna==""){
 		echo("Erantzuna hutsa dago. <br/>");
 	}else if($gaia==""){
