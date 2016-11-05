@@ -21,7 +21,12 @@
 			var param= "eposta="+eposta;
 			Objektua.onreadystatechange = function(){
 			if ((Objektua.readyState==4)&&(Objektua.status==200 )){
-				document.getElementById('emaila').innerHTML=Objektua.responseText+" zaude matrikulatua.";
+				document.getElementById('emaila').innerHTML=Objektua.responseText;
+				if(Objektua.responseText=="EZ"){
+					document.getElementById("botoia").style.display="none";
+				}else if(Objektua.responseText=="BAI"){
+					document.getElementById("botoia").style.display="inline";
+				}
 			}}
 			Objektua.open("POST","RegistrationCheck.php", true);
 			Objektua.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -149,6 +154,11 @@
 			document.getElementById("beste").style.display="none"; 
 		}
 	}
+	
+	function clearBox(ID){
+		document.getElementById(ID).innerHTML = "Matrikulatuta al zaude?";
+		document.getElementById("botoia").style.display="inline";
+	}
     
 </script>
   </head>
@@ -163,11 +173,11 @@
 	<div><input type="text" name="abizena2" placeholder="Freud" /><br/></div>
 	Eposta elektronikoa(*):
 	<div><input type="text" title="EHU posta" name="eposta" id="eposta" placeholder="jarruarte007@ikasle.ehu.eus" onBlur="bidaliMatrikula()"/><br/></div>
-	<div id="emaila" name="emaila">
+	<div id="emaila">
 		<p>Matrikulatuta al zaude?</p>
 	</div>
 	Pasahitza(*):
-	<div><input type="password" name="pasahitza" /><br/></div>
+	<div><input type="password" name="pasahitza" id="pasahitza"/><br/></div>
 	Telefono zenbakia(*):
 	<div><input type="tel" name="telefonoa" placeholder="987654321" /><br/></div>
 	Espezialitatea(*):
@@ -186,8 +196,8 @@
 	Igo ezazu irudia:<br/>
 	<div><input name="image" id="image" type="file" accept="image/*" onchange="irudiaIgo(event)"/><br/></div>
 	<div><img id="aurrekoa" onload="tamainaAldatu(this,125,250)"/><br/></div>
-    <div><input type="submit" name="botoia" value="Bidali" class="btn" />
-	<input type="reset" name="reset "value="Reset" class="btn"><br/></div>
+    <div><input type="submit" name="botoia" id="botoia" value="Bidali" class="btn" />
+	<input type="reset" name="reset "value="Reset" class="btn" onclick="clearBox('emaila')"><br/></div>
 	</form>
 	<span><a href='layout.html'><img src="http://www.freeiconspng.com/uploads/icones-png-theme-home-19.png" alt="atzera" width="50" height="50" align="left"></a></span>	
 	</body>
