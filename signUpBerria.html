@@ -1,0 +1,194 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta name="tipo_contenido" content="width=device-width, initial-scale=1" http-equiv="content-type" charset="utf-8">
+	<title>Formularioa</title>
+    <link rel='stylesheet' type='text/css' href='stylesPWS/style.css' />
+	<link rel='stylesheet' 
+		   type='text/css' 
+		   media='only screen and (min-width: 530px) and (min-device-width: 481px)'
+		   href='stylesPWS/wide.css' />
+	<link rel='stylesheet' 
+		   type='text/css' 
+		   media='only screen and (max-width: 480px)'
+		   href='stylesPWS/smartphone.css' />
+	<script type="text/javascript" language="JavaScript">
+	
+	Objektua = new XMLHttpRequest();
+		
+		function bidaliMatrikula(){
+			var eposta=document.getElementById("eposta").value;
+			var param= "eposta="+eposta;
+			Objektua.onreadystatechange = function(){
+			if ((Objektua.readyState==4)&&(Objektua.status==200 )){
+				document.getElementById('emaila').innerHTML=Objektua.responseText+" zaude matrikulatua.";
+			}}
+			Objektua.open("POST","RegistrationCheck.php", true);
+			Objektua.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			Objektua.send(param);
+	}
+		
+		function balidatu(){
+			var errorea="";
+			var betetzear ="";
+			var frm=document.getElementById("erregistro");
+			for(i=0;i<frm.elements.length;i++){
+				if(frm.elements[i].name == "eposta" || frm.elements[i].name == "izena" || frm.elements[i].name == "abizena1" || frm.elements[i].name == "abizena2" || frm.elements[i].name == "pasahitza" || frm.elements[i].name == "telefonoa"){
+					if(frm.elements[i].value.trim()==""){
+						errorea +=" | "+ frm.elements[i].name;
+					}else{
+						if(frm.elements[i].name == "izena"){
+							if(!checkName(frm.elements[i].value.trim())){
+								betetzear += "Izena ez da zuzena.\n";
+							}
+						}
+						if(frm.elements[i].name == "abizena1"){
+							if(!checkSurname(frm.elements[i].value.trim())){
+								betetzear += "Lehen abizena ez da zuzena.\n";
+							}
+						}	
+						if(frm.elements[i].name == "abizena2"){
+							if(!checkSurname(frm.elements[i].value.trim())){
+								betetzear += "Bigarren abizena ez da zuzena.\n";
+							}
+						}						
+						if(frm.elements[i].name == "pasahitza"){
+							if(!checkPass(frm.elements[i].value.trim())){
+								betetzear += "pasahitzak 6 karaktere baina gutxiago ditu\n" ;
+								betetzear += "Gogoratu pasahitzak ondoko ezaugarriak bete behar dituela:\n" ;
+								betetzear += "- Maiuskulaz, minuskulaz edo digituz betea edo hiruren arteko konbinaketa\n" ;
+								betetzear += "- Ez du espazio txuririk izan behar\n" ;
+							}
+						}
+						if(frm.elements[i].name == "eposta"){
+							if(!checkEmail(frm.elements[i].value.trim())){
+								betetzear += frm.elements[i].name + " okerra (ad. jiparsar003@ikasle.ehu.eus).\n" ;
+							}
+						}
+						if(frm.elements[i].name == "telefonoa"){
+							if(!checkTlfn(frm.elements[i].value.trim())){
+								betetzear += frm.elements[i].name + "-k 9 digitukoa izan behar du.\n" ;
+							}
+						}
+					}
+				}
+			}
+			if(errorea!= "" || betetzear != ""){
+				alert("Bete beharreko gakoak:\n\n   "  +errorea + " |\n\n Gaizki dauden elementuak:\n\n   "+betetzear+"\n");
+			}else{
+                alert("Ondo bete dira gakoak.\n");
+			}
+		}
+
+		function checkName(balioa){
+			expresioa = RegExp(/^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[ ]*){1,2}$/);
+			if(expresioa.test(balioa)){
+				return true;
+			}
+			return false;
+		}
+		
+		function checkSurname(balioa){
+			expresioa = RegExp(/^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[ ]*)+$/);
+			if(expresioa.test(balioa)){
+				return true;
+			}
+			return false;
+		}
+		
+		function checkPass(balioa){
+			expresioa = RegExp(/^[a-zA-Z0-9]{6,}$/);
+			if(expresioa.test(balioa)){
+				return true;
+			}
+			return false;
+		}
+
+		function checkEmail(balioa){
+			expresioa = RegExp(/^[a-z]+[0-9]{3}@ikasle\.ehu\.(es|eus)$/);
+			if(expresioa.test(balioa)){
+				return true;
+			}
+			return false;
+		}
+
+		function checkTlfn(balioa){
+			expresioa = RegExp(/^[0-9]{9}$/);
+			if(expresioa.test(balioa)){
+				return true;
+			}
+			return false;
+		}
+		
+		function ikusBalioak(){
+			var sAux="";
+			var frm=document.getElementById("erregistro");
+			for(i=0;i<frm.elements.length;i++){
+				sAux +="IZENA: " + frm.elements[i].name+" ";
+				sAux +="BALIOA: " + frm.elements[i].value+"\n";
+			}
+			alert(sAux);
+		}
+			
+		var irudiaIgo = function(event) {
+		var output = document.getElementById('aurrekoa');
+		output.src = URL.createObjectURL(event.target.files[0]);
+		output.style.paddingBottom="10px";
+		};
+		
+	function tamainaAldatu(irudia,altuera,zabalera){
+		irudia.height=altuera;
+		irudia.width=zabalera;
+	}
+		
+	function besteEsp(){
+		if (document.getElementById("esp").value=="besterik"){
+			document.getElementById("beste").style.display="inline";
+		}
+		else{
+			document.getElementById("beste").style.display="none"; 
+		}
+	}
+    
+</script>
+  </head>
+  <body>
+    <h1>Formularioa:</h1>
+	<form name="erregistro" id="erregistro" method="post" action="EnrollWithImage.php" enctype="multipart/form-data" accept-charset="utf-8" onsubmit="return balidatu()" >
+	Izena(*):
+	<div><input type="text" name="izena" placeholder="Josu" /><br/></div>
+	1.abizena(*):
+	<div><input type="text" name="abizena1" placeholder="Arruarte" /><br/></div>
+	2.abizena(*):
+	<div><input type="text" name="abizena2" placeholder="Freud" /><br/></div>
+	Eposta elektronikoa(*):
+	<div><input type="text" title="EHU posta" name="eposta" id="eposta" placeholder="jarruarte007@ikasle.ehu.eus" onBlur="bidaliMatrikula()"/><br/></div>
+	<div id="emaila" name="emaila">
+		<p>Matrikulatuta al zaude?</p>
+	</div>
+	Pasahitza(*):
+	<div><input type="password" name="pasahitza" /><br/></div>
+	Telefono zenbakia(*):
+	<div><input type="tel" name="telefonoa" placeholder="987654321" /><br/></div>
+	Espezialitatea(*):
+	<div><select name="espezialitatea" id="esp" onchange="besteEsp();">
+		<option value="Konputazioa">Konputazioa</option>
+		<option value="Software">Software Ingeniaritza</option>
+		<option value="Hardware">Konputagailuen Ingeniaritza</option>
+		<option value="besterik">Besterik</option>
+  </select><br/></div> 
+   <textarea rows="1" cols="20" name="beste" id="beste" value=""  placeholder="espezialitatea" style="display: none;" ></textarea>
+  <br/>
+  Interesak:
+  <div><br/>
+	<textarea rows="10" cols="40" name="interesak" placeholder="arrauna" ></textarea>
+  <br/></div> 
+	Igo ezazu irudia:<br/>
+	<div><input name="image" id="image" type="file" accept="image/*" onchange="irudiaIgo(event)"/><br/></div>
+	<div><img id="aurrekoa" onload="tamainaAldatu(this,125,250)"/><br/></div>
+    <div><input type="submit" name="botoia" value="Bidali" class="btn" />
+	<input type="reset" name="reset "value="Reset" class="btn"><br/></div>
+	</form>
+	<span><a href='layout.html'><img src="http://www.freeiconspng.com/uploads/icones-png-theme-home-19.png" alt="atzera" width="50" height="50" align="left"></a></span>	
+	</body>
+</html>
