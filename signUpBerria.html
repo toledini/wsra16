@@ -15,6 +15,7 @@
 	<script type="text/javascript" language="JavaScript">
 	
 	Objektua = new XMLHttpRequest();
+	Objektua2 = new XMLHttpRequest();
 		
 		function bidaliMatrikula(){
 			var eposta=document.getElementById("eposta").value;
@@ -31,6 +32,23 @@
 			Objektua.open("POST","RegistrationCheck.php", true);
 			Objektua.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 			Objektua.send(param);
+	}
+	
+	function bidaliPasahitza(){
+			var pasahitza=document.getElementById("pasahitza").value;
+			var param= "pasahitza="+pasahitza;
+			Objektua2.onreadystatechange = function(){
+			if ((Objektua2.readyState==4)&&(Objektua2.status==200 )){
+				document.getElementById('pasa').innerHTML=Objektua2.responseText;
+				if(Objektua2.responseText=="BALIOGABEA" &&(Objektua.responseText=="EZ" || Objektua.responseText=="BAI")){
+					document.getElementById("botoia").style.display="none";
+				}else if(Objektua2.responseText=="BALIOZKOA" && Objektua.responseText=="BAI"){
+					document.getElementById("botoia").style.display="inline";
+				}
+			}}
+			Objektua2.open("POST","PasswordCheck.php", true);
+			Objektua2.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			Objektua2.send(param);
 	}
 		
 		function balidatu(){
@@ -155,8 +173,9 @@
 		}
 	}
 	
-	function clearBox(ID){
-		document.getElementById(ID).innerHTML = "Matrikulatuta al zaude?";
+	function clearBox(){
+		document.getElementById("emaila").innerHTML = "Matrikulatuta al zaude?";
+		document.getElementById("pasa").innerHTML = "Pasahitza baliozkoa edo baliogabea?";
 		document.getElementById("botoia").style.display="inline";
 	}
     
@@ -165,22 +184,25 @@
   <body>
     <h1>Formularioa:</h1>
 	<form name="erregistro" id="erregistro" method="post" action="EnrollWithImage.php" enctype="multipart/form-data" accept-charset="utf-8" onsubmit="return balidatu()" >
-	Izena(*):
+	Izena*:
 	<div><input type="text" name="izena" placeholder="Josu" /><br/></div>
-	1.abizena(*):
+	1.abizena*:
 	<div><input type="text" name="abizena1" placeholder="Arruarte" /><br/></div>
-	2.abizena(*):
+	2.abizena*:
 	<div><input type="text" name="abizena2" placeholder="Freud" /><br/></div>
-	Eposta elektronikoa(*):
-	<div><input type="text" title="EHU posta" name="eposta" id="eposta" placeholder="jarruarte007@ikasle.ehu.eus" onBlur="bidaliMatrikula()"/><br/></div>
+	Eposta elektronikoa*:
+	<div><input type="text" title="EHU posta" name="eposta" id="eposta" placeholder="jarruarte007@ikasle.ehu.eus" onchange="bidaliMatrikula()"/><br/></div>
 	<div id="emaila">
 		<p>Matrikulatuta al zaude?</p>
 	</div>
-	Pasahitza(*):
-	<div><input type="password" name="pasahitza" id="pasahitza"/><br/></div>
-	Telefono zenbakia(*):
+	Pasahitza*(6 karaktereko luzera minimoa):
+	<div><input type="password" name="pasahitza" id="pasahitza" onchange="bidaliPasahitza()"/><br/></div>
+	<div id="pasa">
+		<p>Pasahitza baliozkoa edo baliogabea?</p>
+	</div>
+	Telefono zenbakia*:
 	<div><input type="tel" name="telefonoa" placeholder="987654321" /><br/></div>
-	Espezialitatea(*):
+	Espezialitatea*:
 	<div><select name="espezialitatea" id="esp" onchange="besteEsp();">
 		<option value="Konputazioa">Konputazioa</option>
 		<option value="Software">Software Ingeniaritza</option>
@@ -197,7 +219,7 @@
 	<div><input name="image" id="image" type="file" accept="image/*" onchange="irudiaIgo(event)"/><br/></div>
 	<div><img id="aurrekoa" onload="tamainaAldatu(this,125,250)"/><br/></div>
     <div><input type="submit" name="botoia" id="botoia" value="Bidali" class="btn" />
-	<input type="reset" name="reset "value="Reset" class="btn" onclick="clearBox('emaila')"><br/></div>
+	<input type="reset" name="reset "value="Reset" class="btn" onclick="clearBox()"><br/></div>
 	</form>
 	<span><a href='layout.html'><img src="http://www.freeiconspng.com/uploads/icones-png-theme-home-19.png" alt="atzera" width="50" height="50" align="left"></a></span>	
 	</body>

@@ -3,7 +3,8 @@
 	require_once('lib/class.wsdlcache.php');
 	
 	$zerbitzari= new soap_server;
-	$location = "http://localhost:1234/wsra16/myquiz/";
+	$location = "http://websistemak2016.esy.es/myquiz/";
+	//$location = "http://localhost:1234/wsra16/myquiz/";
 	$zerbitzari->configureWSDL('ValidPassword',$location);
 	$zerbitzari->wsdl->schemaTargetNamespace=$location;
 	$zerbitzari->register('ValidPassword',array('x'=>'xsd:string'),array('z'=>'xsd:string'),$location);
