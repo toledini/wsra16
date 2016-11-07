@@ -25,7 +25,7 @@
 				document.getElementById('emaila').innerHTML=Objektua.responseText;
 				if(Objektua.responseText=="EZ"){
 					document.getElementById("botoia").style.display="none";
-				}else if(Objektua.responseText=="BAI"){
+				}else if(Objektua.responseText=="BAI" && (Objektua2.responseText=="" || Objektua2.responseText=="BALIOZKOA")){
 					document.getElementById("botoia").style.display="inline";
 				}
 			}}
@@ -40,7 +40,7 @@
 			Objektua2.onreadystatechange = function(){
 			if ((Objektua2.readyState==4)&&(Objektua2.status==200 )){
 				document.getElementById('pasa').innerHTML=Objektua2.responseText;
-				if(Objektua2.responseText=="BALIOGABEA" &&(Objektua.responseText=="EZ" || Objektua.responseText=="BAI")){
+				if(Objektua2.responseText=="BALIOGABEA"){
 					document.getElementById("botoia").style.display="none";
 				}else if(Objektua2.responseText=="BALIOZKOA" && Objektua.responseText=="BAI"){
 					document.getElementById("botoia").style.display="inline";
