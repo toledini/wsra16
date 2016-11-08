@@ -12,13 +12,46 @@
 		   type='text/css' 
 		   media='only screen and (max-width: 480px)'
 		   href='stylesPWS/smartphone1.css' />
+	<script type="text/javascript">
+	
+	function hasi(){
+		var botoia=document.getElementById('lortu');
+		botoia.addEventListener('click', lortu, false);
+	}
+	 
+	function lortu(){navigator.geolocation.getCurrentPosition(erakutsi, erroreakKudeatu);}
+	 
+	function erakutsi(posizioa){
+		var tokia=document.getElementById('lokalizazioa');
+		var datuak='';
+		datuak+='<font color="white"><strong>Latitudea: '+posizioa.coords.latitude+'</strong></font><br>';
+		datuak+='<font color="white"><strong>Longitudea: '+posizioa.coords.longitude+'</strong></font><br>';
+		datuak+='<font color="white"><strong>Exaktitudea: '+posizioa.coords.accuracy+' metro.</strong></font><br>';
+		tokia.innerHTML=datuak;
+	}
+	 
+	function erroreakKudeatu(error){
+		alert('Error: '+error.code+' '+error.message+ '\n\n Mesedez konprobatu konektatua zaudela '+
+		'internetera eta zure lokalizazioa ikustea ahalbidetu.');
+	}
+	 
+	window.addEventListener('load', hasi, false);
+	 
+	</script>
   </head>
   <body>
   <h1>Joan Alza &amp; Gorka Toledo</h1>
   <h2>Konputazio espezialitatekoak</h2>
+  
   <img src="https://pbs.twimg.com/media/ChB2IITWIAAMNz1.jpg" alt="argazkia">
   <iframe width="560" height="315" src="https://www.youtube.com/embed/8rAwTVEaic4" frameborder="0" allowfullscreen></iframe><br/>
   <div><span><a href='layout.html'><img src="http://www.freeiconspng.com/uploads/icones-png-theme-home-19.png" alt="atzera" width="50" height="50" align="left"></a></span></div>
+  
+  <center>
+  <div id="lokalizazioa">
+	<button id="lortu" style="margin:30px;">Nire lokalizazioa lortu.</button>
+  </div>
+  </center>
   
 </body>
 </html>

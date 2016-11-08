@@ -16,6 +16,7 @@
 	
 	Objektua = new XMLHttpRequest();
 	Objektua2 = new XMLHttpRequest();
+	Objektua3 = new XMLHttpRequest();
 		
 		function bidaliMatrikula(){
 			var eposta=document.getElementById("eposta").value;
@@ -25,7 +26,7 @@
 				document.getElementById('emaila').innerHTML=Objektua.responseText;
 				if(Objektua.responseText=="EZ"){
 					document.getElementById("botoia").style.display="none";
-				}else if(Objektua.responseText=="BAI" && (Objektua2.responseText=="" || Objektua2.responseText=="BALIOZKOA")){
+				}else if(Objektua.responseText=="BAI" && (Objektua2.responseText=="" || Objektua2.responseText=="BALIOZKOA") && (Objektua3.responseText=="" || Objektua3.responseText=="BAIMENDUN ERABILTZAILEA")){
 					document.getElementById("botoia").style.display="inline";
 				}
 			}}
@@ -42,13 +43,30 @@
 				document.getElementById('pasa').innerHTML=Objektua2.responseText;
 				if(Objektua2.responseText=="BALIOGABEA"){
 					document.getElementById("botoia").style.display="none";
-				}else if(Objektua2.responseText=="BALIOZKOA" && Objektua.responseText=="BAI"){
+				}else if(Objektua2.responseText=="BALIOZKOA" && Objektua.responseText=="BAI" && (Objektua3.responseText=="" || Objektua3.responseText=="BAIMENDUN ERABILTZAILEA")){
 					document.getElementById("botoia").style.display="inline";
 				}
 			}}
 			Objektua2.open("POST","PasswordCheck.php", true);
 			Objektua2.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 			Objektua2.send(param);
+	}
+	
+	function bidaliTiketa(){
+			var tiketa=document.getElementById("tiketa").value;
+			var param= "tiketa="+tiketa;
+			Objektua3.onreadystatechange = function(){
+			if ((Objektua3.readyState==4)&&(Objektua3.status==200 )){
+				document.getElementById('tik').innerHTML=Objektua3.responseText;
+				if(Objektua3.responseText=="BAIMENIK GABEKO ERABILTZAILEA"){
+					document.getElementById("botoia").style.display="none";
+				}else if(Objektua3.responseText=="BAIMENDUN ERABILTZAILEA" && Objektua2.responseText=="BALIOZKOA" && Objektua.responseText=="BAI"){
+					document.getElementById("botoia").style.display="inline";
+				}
+			}}
+			Objektua3.open("POST","TicketCheck.php", true);
+			Objektua3.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			Objektua3.send(param);
 	}
 		
 		function balidatu(){
@@ -176,6 +194,7 @@
 	function clearBox(){
 		document.getElementById("emaila").innerHTML = "Matrikulatuta al zaude?";
 		document.getElementById("pasa").innerHTML = "Pasahitza baliozkoa edo baliogabea?";
+		document.getElementById("tik").innerHTML = "Baimendun erabiltzailea?";
 		document.getElementById("botoia").style.display="inline";
 	}
     
@@ -199,6 +218,11 @@
 	<div><input type="password" name="pasahitza" id="pasahitza" onchange="bidaliPasahitza()"/><br/></div>
 	<div id="pasa">
 		<p>Pasahitza baliozkoa edo baliogabea?</p>
+	</div>
+	Tiketa*(4 digitu):
+	<div><input type="text" name="tiketa" id="tiketa" onchange="bidaliTiketa()"/><br/></div>
+	<div id="tik">
+		<p>Baimendun erabiltzailea?</p>
 	</div>
 	Telefono zenbakia*:
 	<div><input type="tel" name="telefonoa" placeholder="987654321" /><br/></div>
