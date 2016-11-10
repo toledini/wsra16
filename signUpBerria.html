@@ -36,6 +36,9 @@
 	}
 	
 	function bidaliPasahitza(){
+			if(document.getElementById("pasahitza2")!=""){
+				konprobatuPasahitzaBerdina();
+			}
 			var pasahitza=document.getElementById("pasahitza").value;
 			var param= "pasahitza="+pasahitza;
 			Objektua2.onreadystatechange = function(){
@@ -68,13 +71,26 @@
 			Objektua3.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 			Objektua3.send(param);
 	}
+	
+	function konprobatuPasahitzaBerdina(){
+		var pas1=document.getElementById("pasahitza").value;
+		var pas2=document.getElementById("pasahitza2").value;
+		if(pas1==pas2){
+			document.getElementById("pasaBerdina").innerHTML="Pasahitzak berdinak dira.";
+		}else{
+			document.getElementById("pasaBerdina").innerHTML="Pasahitza ezberdinak sartu dituzu.";
+		}
+	
+	}
+	
+	
 		
 		function balidatu(){
 			var errorea="";
 			var betetzear ="";
 			var frm=document.getElementById("erregistro");
 			for(i=0;i<frm.elements.length;i++){
-				if(frm.elements[i].name == "eposta" || frm.elements[i].name == "izena" || frm.elements[i].name == "abizena1" || frm.elements[i].name == "abizena2" || frm.elements[i].name == "pasahitza" || frm.elements[i].name == "telefonoa"){
+				if(frm.elements[i].name == "eposta" || frm.elements[i].name == "izena" || frm.elements[i].name == "abizena1" || frm.elements[i].name == "abizena2" || frm.elements[i].name == "pasahitza" || frm.elements[i].name=="pasahitza2" || frm.elements[i].name=="tiketa" || frm.elements[i].name == "telefonoa"){
 					if(frm.elements[i].value.trim()==""){
 						errorea +=" | "+ frm.elements[i].name;
 					}else{
@@ -99,6 +115,11 @@
 								betetzear += "Gogoratu pasahitzak ondoko ezaugarriak bete behar dituela:\n" ;
 								betetzear += "- Maiuskulaz, minuskulaz edo digituz betea edo hiruren arteko konbinaketa\n" ;
 								betetzear += "- Ez du espazio txuririk izan behar\n" ;
+							}
+						}
+						if(frm.elements[i].name == "tiketa"){
+							if(!checkTicket(frm.elements[i].value.trim())){
+								betetzear += "Tiketa ez da zuzena.\n";
 							}
 						}
 						if(frm.elements[i].name == "eposta"){
@@ -152,6 +173,14 @@
 			}
 			return false;
 		}
+		
+		function checkTicket(balioa){
+			expresioa = RegExp(/^[0-9]{4}$/);
+			if(expresioa.test(balioa)){
+				return true;
+			}
+			return false;
+		}
 
 		function checkTlfn(balioa){
 			expresioa = RegExp(/^[0-9]{9}$/);
@@ -195,6 +224,7 @@
 		document.getElementById("emaila").innerHTML = "Matrikulatuta al zaude?";
 		document.getElementById("pasa").innerHTML = "Pasahitza baliozkoa edo baliogabea?";
 		document.getElementById("tik").innerHTML = "Baimendun erabiltzailea?";
+		document.getElementById("pasaBerdina").innerHTML = "Berdina al da pasahitza?";
 		document.getElementById("botoia").style.display="inline";
 	}
     
@@ -218,6 +248,11 @@
 	<div><input type="password" name="pasahitza" id="pasahitza" onchange="bidaliPasahitza()"/><br/></div>
 	<div id="pasa">
 		<p>Pasahitza baliozkoa edo baliogabea?</p>
+	</div>
+	Pasahitza errepikatu*:
+	<div><input type="password" name="pasahitza2" id="pasahitza2" onchange="konprobatuPasahitzaBerdina()"><br/></div>
+	<div id="pasaBerdina">
+		<p>Berdina al da pasahitza?<p>
 	</div>
 	Tiketa*(4 digitu):
 	<div><input type="text" name="tiketa" id="tiketa" onchange="bidaliTiketa()"/><br/></div>
