@@ -47,6 +47,7 @@
 	$abizena2 = $_POST['abizena2'];
 	$posta = $_POST['eposta'];
 	$pass = $_POST['pasahitza'];
+	$tik = $_POST['tiketa'];
 	$tel = $_POST['telefonoa'];
 	$interes = $_POST['interesak'];
 	
@@ -74,6 +75,11 @@
 		}else if(filter_var($pass, FILTER_VALIDATE_REGEXP,array("options"=>array("regexp"=>"/[a-zA-Z0-9]{6,}/")))=== false){
 			echo "<script type=\"text/javascript\">
 			    alert('Pasahitza ez da zuzena.');
+				history.go(-1);
+				</script>";
+		}else if(filter_var($tik, FILTER_VALIDATE_REGEXP,array("options"=>array("regexp"=>"/[0-9]{4}/")))===false){
+			echo "<script type=\text/javascript\">
+				alert('Tiketa ez da zuzena.');
 				history.go(-1);
 				</script>";
 		}else if(filter_var($tel, FILTER_VALIDATE_REGEXP,array("options"=>array("regexp"=>"/[0-9]{9}/")))=== false){

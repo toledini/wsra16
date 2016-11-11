@@ -17,7 +17,7 @@
 		}else{
 			$eposta=$_POST['eposta'];
 			if (!filter_var($eposta,FILTER_VALIDATE_REGEXP,
-				array("options"=>array("regexp"=>"/[a-z]+[0-9]{3}@ikasle\.ehu\.(es|eus)/"))) === false) {
+				array("options"=>array("regexp"=>"/[a-z]+[0-9]{3}@(ikasle\.)?ehu\.(es|eus)/"))) === false) {
 				echo("Epostaren formatua egokia da. <br/>");
 				$pasahitza=$_POST['pasahitza'];
 				if (!filter_var($pasahitza,FILTER_VALIDATE_REGEXP,
@@ -34,7 +34,11 @@
 							echo 'Konexioa zuzen sartu da';
 						}
 						setcookie("ErabiltzaileLog",$eposta);
-						header('Location:handlingQuizes.php');
+						if($eposta == 'web000@ehu.es'){
+							header('Location:reviewingQuizes.php');
+						}else{
+							header('Location:handlingQuizes.php');
+						}
 					}else{
 						echo "<script type=\"text/javascript\">
 						alert('Erabiltzaile hori erregistratu gabea dago.');
