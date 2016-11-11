@@ -1,7 +1,7 @@
 <?php 
 
-	if ($_COOKIE['ErabiltzaileLog']!= ''){
-		$_COOKIE='';
-	}
+	session_start();
+	session_destroy();
 	header('Location:layout.html');
+	exit();
 ?>	

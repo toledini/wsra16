@@ -17,7 +17,7 @@
 								
 	
 	
-	$eposta=$_COOKIE["ErabiltzaileLog"];
+	$eposta=$_SESSION['username'];
 	
 	if($galdera==""){
 		echo("Galdera hutsa dago. <br/>");

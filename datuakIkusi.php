@@ -7,7 +7,7 @@
 	if ($niremysql->connect_error) {
 		printf("Konexio errorea: " . $niremysql->connect_error);
 	}
-	$eposta=$_COOKIE["ErabiltzaileLog"];
+	$eposta=$_SESSION['username'];
 	$galderak = $niremysql -> query ("Select galdera, zailtasuna, gaia from galderak where eposta='$eposta'");
 	$mota="galdera ikusi";
 	$ordua= Date('Y-m-d H:i:s');

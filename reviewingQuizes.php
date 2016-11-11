@@ -17,6 +17,10 @@
 <?php
 
 	session_start();
+	if($_SESSION['kautotua'] != 'BAI'){
+		header('Location.html');
+		exit();
+	}
 	$niremysql = new mysqli("localhost","root","","quiz");
 	//$niremysql = new mysqli("mysql.hostinger.es","u980005360_tol","joantol","u980005360_quiz");
 	

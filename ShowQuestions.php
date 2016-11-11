@@ -16,6 +16,7 @@
 </html>
 <?php 
 	
+	session_start();
 	$niremysql = new mysqli("localhost","root","","quiz");
 	//$niremysql = new mysqli("mysql.hostinger.es","u980005360_tol","joantol","u980005360_quiz");
 		
@@ -28,7 +29,7 @@
 	$hautatu = "SELECT * FROM galderak";
 	$balioak = $niremysql -> query ($hautatu);
 	
-	$eposta=$_COOKIE["ErabiltzaileLog"];
+	$eposta=$_SESSION['username'];
 	$mota="galdera ikusi";
 	$ordua= Date('Y-m-d H:i:s');
 	if (!empty($_SERVER['HTTP_CLIENT_IP'])) {

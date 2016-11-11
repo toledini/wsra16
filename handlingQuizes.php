@@ -1,5 +1,9 @@
 <?php
 	session_start();
+	if($_SESSION['kautotua'] != 'BAI'){
+		header('Location.html');
+		exit();
+	}
 ?>
 
 <!DOCTYPE HTML>

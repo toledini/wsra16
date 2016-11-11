@@ -23,7 +23,8 @@
 				if (!filter_var($pasahitza,FILTER_VALIDATE_REGEXP,
 				array("options"=>array("regexp"=>"/[a-zA-Z0-9]{6,}/"))) === false) {
 					echo("Pasahitzaren formatua egokia da. <br/>");
-					$arg = $niremysql->query("SELECT * FROM erabiltzaile WHERE eposta='$eposta' and pasahitza='$pasahitza'");	
+					$arg = $niremysql->query("SELECT * FROM erabiltzaile WHERE eposta='$eposta' and pasahitza='$pasahitza'");
+					$_SESSION['kautotua']='BAI';
 					$row = mysqli_num_rows( $arg );
 					if($row > 0){
 						$dataordua=Date('Y-m-d H:i:s');;
@@ -33,8 +34,8 @@
 						}else{
 							echo 'Konexioa zuzen sartu da';
 						}
-						setcookie("ErabiltzaileLog",$eposta);
-						if($eposta == 'web000@ehu.es'){
+						$_SESSION['username'] = $eposta;
+						if($_SESSION['username'] == 'web000@ehu.es'){
 							header('Location:reviewingQuizes.php');
 						}else{
 							header('Location:handlingQuizes.php');
@@ -46,12 +47,14 @@
 						</script>";
 					}
 				}else{
+					$_SESSION['kautotua']='EZ';
 					echo "<script type=\"text/javascript\">
 					alert('Pasahitzaren formatua ez da egokia.');
 					history.go(-1);
 					</script>";
 				} 
 			}else{
+				$_SESSION['kautotua']='EZ';
 				echo "<script type=\"text/javascript\">
 			    alert('Epostaren formatua ez da egokia.');
 				history.go(-1);

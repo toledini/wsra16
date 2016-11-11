@@ -24,7 +24,7 @@
 		printf("Konexio errorea: " . $niremysql->connect_error);
 	}
 	
-	$eposta=$_COOKIE["ErabiltzaileLog"];
+	$eposta=$_SESSION['username'];
 					
 	$galderakDB = $niremysql -> query ("SELECT * FROM galderak");
 	$rows=mysqli_num_rows($galderakDB);

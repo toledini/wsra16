@@ -70,7 +70,7 @@
 								
 	}
 	
-	$eposta=$_COOKIE["ErabiltzaileLog"];
+	$eposta=$_SESSION['username'];
 	
 	if (isset($_POST['bidali'])) {
 		if($galdera==""){
