@@ -26,14 +26,39 @@
 	
 	$galderak = $niremysql->query("SELECT * FROM galderak");
 	
-	echo "<h1> Galderen zerrenda </h1>";
-	echo '<table border=1>
-	<tr>
-	<th> Eposta </th>
-	<th> Galdera </th>
-	<th> Erantzuna </th>
-	<th> Gaia </th>
-	<th> Zailtasuna </th>
-	</tr>';
-	
 ?>
+<html>
+<body>
+	<center>
+		<form method="post" action="treatQuestions.php">
+			<table>
+				<tr>
+					<th>Identifikazioa</th>
+					<th>Galdera</th>
+					<th>Erantzuna</th>
+					<th>Konplexutasuna</th>
+					<th>Egilea</th>
+					<th>Gaia</th>
+				</tr>
+				<?php
+					$kopurua = 0;
+					while($ilara = mysqli_fetch_array($galderak)){
+						echo "
+						<tr>
+							<td><input type='number' name='berria[]' value= '".$ilara['zenbakia']."' readonly></td>
+							<td><input type='text' name ='berria[]' value = '".$ilara['eposta']."'readonly></td>
+							<td><textarea name ='berria[]' required>".$ilara['galdera']."</textarea></td>
+							<td><textarea name ='berria[]' required>".$ilara['erantzuna']."</textarea></td>
+							<td><input type='text' value='".$ilara['gaia']."' name ='berria[]'></td>
+							<td><input type='number' min = 0 max = 5 value ='".$ilara['zailtasuna']."' name ='berria[]'></td>
+						</tr>";
+					}
+				?>
+			</table><br/>
+			<button type="submit">Gorde aldaketak</button>
+		</form>
+	</center>
+	<span><a href='layout.html'><img src="http://www.freeiconspng.com/uploads/icones-png-theme-home-19.png" alt="atzera" width="50" height="50" align="left"></a></span>	
+</body>
+</html>
+
