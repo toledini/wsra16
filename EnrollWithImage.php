@@ -16,8 +16,8 @@
 </html>
 <?php
 
-	//$niremysql = new mysqli("localhost","root","","quiz");
-	$niremysql = new mysqli("mysql.hostinger.es","u980005360_tol","joantol","u980005360_quiz");
+	$niremysql = new mysqli("localhost","root","","quiz");
+	//$niremysql = new mysqli("mysql.hostinger.es","u980005360_tol","joantol","u980005360_quiz");
 	
 	if ($niremysql->connect_error) {
 		printf("Konexio errorea: " . $niremysql->connect_error);
@@ -90,11 +90,12 @@
 		}else{
 			$pass = crypt($pass, 'st');
 			
-				$balioa = "INSERT INTO erabiltzaile(izena,abizena1,abizena2,eposta,pasahitza,telefonoa,espezialitatea,interesak,argazkia,argazki_mota) VALUES ('$_POST[izena]','$_POST[abizena1]','$_POST[abizena2]','$_POST[eposta]','$_POST[pasahitza]','$_POST[telefonoa]','$espezialitate','$_POST[interesak]','$irudia','$irudi_izena')";
+			$balioa = "INSERT INTO erabiltzaile(izena,abizena1,abizena2,eposta,pasahitza,telefonoa,espezialitatea,interesak,argazkia,argazki_mota,galdera,erantzuna) VALUES ('$_POST[izena]','$_POST[abizena1]','$_POST[abizena2]','$_POST[eposta]','$_POST[pasahitza]','$_POST[telefonoa]','$espezialitate','$_POST[interesak]','$irudia','$irudi_izena','$_POST[question]','$_POST[answer]')";
 				
 			if (!$niremysql -> query($balioa)){
 				die("<p>Errore bat gertatu da: ".$niremysql -> error."</p>");
 			}
+		
 			$fitxategi= simplexml_load_file('erabiltzaileak.xml');
 				$item= $fitxategi->addChild('erabiltzailea');
 				$item->addChild('eposta',$posta);
