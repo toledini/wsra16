@@ -40,8 +40,6 @@
 			}
 			if(errorea!= "" || betetzear != ""){
 				alert("Bete beharreko gakoak:\n\n   "  +errorea + " |\n\n Gaizki dauden elementuak:\n\n   "+betetzear+"\n");
-			}else{
-                ikusBalioak();
 			}
 		}
 		
@@ -61,16 +59,6 @@
 			return false;
 		}
 		
-		function ikusBalioak(){
-			var sAux="";
-			var frm=document.getElementById("erregistro");
-			for(i=0;i<frm.elements.length;i++){
-				sAux +="IZENA: " + frm.elements[i].name+" ";
-				sAux +="BALIOA: " + frm.elements[i].value+"\n";
-			}
-			alert(sAux);
-		}
-		
   </script>
 </head>
 <body>
@@ -86,7 +74,7 @@
 	  <input type="reset" name="reset "value="Reset" class="btn"><br/></div>
 
     </form>
-	  Pasahitza ahaztu duzu? <span class="right"><a href="pasahitzaBerreskuratu.html">Pasahitza berria</a> </span><br/>
+	  Pasahitza ahaztu duzu? <span class="right"><a href="pasahitzaBerreskuratu.php">Pasahitza berria</a> </span><br/>
       Erregistratu gabe? <span class="right"><a href="signUpBerria.html">SignUp</a> </span><br/>
 	 <span><a href='layout.html'><img src="http://www.freeiconspng.com/uploads/icones-png-theme-home-19.png" alt="atzera" width="50" height="50" align="left"></a></span>
 

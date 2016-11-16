@@ -1,12 +1,15 @@
 <?php
 
 	session_start();
-	$niremysql = new mysqli("localhost","root","","quiz");
-	//$niremysql = new mysqli("mysql.hostinger.es","u980005360_tol","joantol","u980005360_quiz");
+	//$niremysql = new mysqli("localhost","root","","quiz");
+	$niremysql = new mysqli("mysql.hostinger.es","u980005360_tol","joantol","u980005360_quiz");
 	
 	if ($niremysql->connect_error) {
 		printf("Konexio errorea: " . $niremysql->connect_error);
 	}
+	
+	if (!isset($_SESSION['saiakerak']))
+	$_SESSION['saiakerak']=1;
 
 	if (isset($_POST['submit'])){
 		if(!$_POST['eposta'] | !$_POST['pasahitza']){
@@ -40,9 +43,13 @@
 						}else{
 							header('Location:handlingQuizes.php');
 						}
+					}else if($_SESSION['saiakerak']==3){
+						header('Location:saiakeraMaximoa.php');
 					}else{
+						echo "Saiakera kopurua:" .$_SESSION['saiakerak'];
+						$_SESSION['saiakerak']=$_SESSION['saiakerak']+1;
 						echo "<script type=\"text/javascript\">
-						alert('Erabiltzaile hori erregistratu gabea dago.');
+						alert('Erabiltzaile hori erregistratu gabea dago ala okerreko pasahitza sartu duzu.');
 						history.go(-1);
 						</script>";
 					}

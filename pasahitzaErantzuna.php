@@ -1,15 +1,15 @@
 <?php
 	
-	$niremysql = new mysqli("localhost","root","","quiz");
-	//$niremysql = new mysqli("mysql.hostinger.es","u980005360_tol","joantol","u980005360_quiz");
+	//$niremysql = new mysqli("localhost","root","","quiz");
+	$niremysql = new mysqli("mysql.hostinger.es","u980005360_tol","joantol","u980005360_quiz");
 	
 	if ($niremysql->connect_error) {
 		printf("Konexio errorea: " . $niremysql->connect_error);
 	}
 	
 		
-	$user = $_POST['eposta'];
-	$eran = $_POST['erantzuna'];
+	$user = $_GET['emaila'];
+	$eran = $_GET['eran'];
 		
 
 	$balioak = $niremysql -> query ("SELECT * FROM erabiltzaile WHERE eposta = '$user' AND erantzuna = '$eran'");

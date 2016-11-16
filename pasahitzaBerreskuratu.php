@@ -12,13 +12,12 @@
 		   type='text/css' 
 		   media='only screen and (max-width: 480px)'
 		   href='stylesPWS/smartphone.css' />
-	<script type="text/javascript" language="JavaScript">
 		   
 		   <script>
 			function galderaLortu(){
-				var eposta = document.getElementById('eposta').value;
+				var emaila = document.getElementById('eposta').value;
 				var xhr = new XMLHttpRequest();
-				xhr.open("POST","pasahitzaGaldera.php?eposta="+eposta,true);
+				xhr.open("GET","pasahitzaGaldera.php?emaila="+emaila,true);
 				xhr.onreadystatechange = function(){
 					if((xhr.readyState == 4) && (xhr.status == 200)){
 						document.getElementById('galderaErantzuna').innerHTML = xhr.responseText;
@@ -28,10 +27,10 @@
 			}
 			
 			function egiaztatuErantzuna(){
-				var eposta = document.getElementById('eposta').value;
-				var erantzuna = document.getElementById('erantzuna').value;
+				var emaila = document.getElementById('eposta').value;
+				var eran = document.getElementById('erantzuna').value;
 				var xhr = new XMLHttpRequest();
-				xhr.open("POST","pasahitzaErantzuna.php?eposta="+eposta+"&erantzuna="+erantzuna,true);
+				xhr.open("GET","pasahitzaErantzuna.php?emaila="+emaila+"&eran="+eran,true);
 				xhr.onreadystatechange = function(){
 					if((xhr.readyState == 4) && (xhr.status == 200)){
 						document.getElementById('Berria').innerHTML = xhr.responseText;
@@ -46,8 +45,9 @@
 		<h3>Pasahitza Berria</h3>
 		<label>Eposta: </label>
 		<input type ="text" id ="eposta">
-		<button type="input" onclick="galderaLortu()">Bidali</button>
+		<input type="submit" class="btn" value="Bidali" onclick="galderaLortu()">
 		<div id="galderaErantzuna"></div>
 	</center>
+	<p><a href = 'Login.html'>Atzera</a></p>
 </body>
 </html>
