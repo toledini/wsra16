@@ -38,11 +38,11 @@
 			<table>
 				<tr>
 					<th>Identifikazioa</th>
+					<th>Eposta</th>
 					<th>Galdera</th>
 					<th>Erantzuna</th>
-					<th>Konplexutasuna</th>
-					<th>Egilea</th>
 					<th>Gaia</th>
+					<th>Konplexutasuna</th>
 				</tr>
 				<?php
 					$kopurua = 0;
